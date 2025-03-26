@@ -1,0 +1,16 @@
+$header-color-start: #9ccbe8;
+$header-color-end: #256a94;
+$header-font-color: white;
+
+.header {
+    background: linear-gradient(to bottom, $header-color-start, $header-color-end);
+    height: max(12vh, 10vw);
+    font-size: 1.1rem;
+    color: $header-font-color;
+}
+
+.header-button {
+    font-size: 1.5rem !important;
+    color: $header-font-color !important
+}
+
