@@ -5,12 +5,19 @@ import "./Header.scss"
 import "./../App.scss"
 import { applicationStrings } from '../static/applicationStrings';
 import { useContext } from 'react';
+import {useLocation} from 'react-router-dom';
 import { LanguageContext } from '../context/LanguageContext';
 import { LANGUAGE_DE, LANGUAGE_EN } from '../constants/Language';
 
 function Header() {
 
     const {language, userLanguageChange} = useContext(LanguageContext)
+    const location = useLocation();
+
+    let activePath = location.pathname && location.pathname !== "/" ? location.pathname : PATH_HOME
+    if (activePath.endsWith("/") && activePath.length > 1) {
+        activePath = activePath.substring(0, activePath.length - 1)
+    }
 
     const readerLanguageButtons = () => {
         return <Form>
@@ -53,6 +60,7 @@ function Header() {
             <div className="d-flex justify-content-center align-items-end h-100">
                 <Link to={PATH_HOME}>
                     <Button className={"btn btn-link header-button"}
+                            active={activePath === PATH_HOME}
                             value={PATH_HOME}
                             variant={'link'}>
                             {applicationStrings.menu_home[language]}
@@ -60,6 +68,7 @@ function Header() {
                 </Link>
                 <Link to={PATH_IMPORT}>
                     <Button className={"btn btn-link header-button"}
+                            active={activePath === PATH_IMPORT}
                             value={PATH_IMPORT}
                             variant={'link'}>
                             {applicationStrings.menu_import[language]}
@@ -67,6 +76,7 @@ function Header() {
                 </Link>
                 <Link to={PATH_ANALYSIS}>
                     <Button className={"btn btn-link header-button"}
+                            active={activePath === PATH_ANALYSIS}
                             value={PATH_ANALYSIS}
                             variant={'link'}>
                             {applicationStrings.menu_analysis[language]}

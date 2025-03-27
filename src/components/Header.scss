@@ -1,6 +1,7 @@
 $header-color-start: #9ccbe8;
 $header-color-end: #256a94;
 $header-font-color: white;
+$header-font-color-selected: yellow;
 
 // General header layout.
 .header {
@@ -14,6 +15,11 @@ $header-font-color: white;
 .header-button {
     font-size: 1.5rem !important;
     color: $header-font-color !important
+}
+
+// Active menu button (selected page).
+.header-button.active, .header-button:active {
+    color: $header-font-color-selected !important;
 }
 
 // The language form panel.
