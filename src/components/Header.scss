@@ -2,6 +2,7 @@ $header-color-start: #9ccbe8;
 $header-color-end: #256a94;
 $header-font-color: white;
 
+// General header layout.
 .header {
     background: linear-gradient(to bottom, $header-color-start, $header-color-end);
     height: max(12vh, 10vw);
@@ -9,8 +10,14 @@ $header-font-color: white;
     color: $header-font-color;
 }
 
+// Menu buttons (page buttons) in the header.
 .header-button {
     font-size: 1.5rem !important;
     color: $header-font-color !important
+}
+
+// The language form panel.
+.language-panel {
+    margin: 0.5ch 2ch 0ch 0ch;
 }
 
