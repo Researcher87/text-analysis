@@ -1,4 +1,16 @@
 export const applicationStrings: any = {
+    _apply: {
+        "de": "Übernehmen",
+        "en": "Apply"
+    },
+    _edit: {
+        "de": "Bearbeiten",
+        "en": "Edit"
+    },
+    _sample: {
+        "de": "Beispiel",
+        "en": "Sample"
+    },
     label_language: {
         "de": "Sprache",
         "en": "Language"

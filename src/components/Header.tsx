@@ -1,13 +1,12 @@
-import {Link} from 'react-router-dom';
 import {Button, Form} from "react-bootstrap";
 import { PATH_ANALYSIS, PATH_HOME, PATH_IMPORT } from '../constants/Paths';
 import "./Header.scss"
 import "./../App.scss"
 import { applicationStrings } from '../static/applicationStrings';
 import { useContext } from 'react';
-import {useLocation} from 'react-router-dom';
 import { LanguageContext } from '../context/LanguageContext';
 import { LANGUAGE_DE, LANGUAGE_EN } from '../constants/Language';
+import { Link, useLocation } from "react-router";
 
 function Header() {
 

@@ -1,14 +1,12 @@
 import './App.scss';
 
-import Switch from "react-bootstrap/Switch";
-import {BrowserRouter, Navigate, Route, Router, Routes} from 'react-router-dom'
-
 import Header from './components/Header';
 import { LanguageProvider } from './context/LanguageContext';
 import { PATH_ANALYSIS, PATH_HOME, PATH_IMPORT } from './constants/Paths';
 import Home from './components/Home';
 import Import from './components/Import';
 import Analysis from './components/Analysis';
+import { Navigate, Route, Routes } from 'react-router';
 
 function App() {
   return (
