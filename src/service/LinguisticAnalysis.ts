@@ -1,7 +1,7 @@
-import { Document, Paragraph } from "../types/structure";
+import { Document, Paragraph, SENTENCE_TYPE_DECLARATIVE, SENTENCE_TYPE_ELLIPSIS, SENTENCE_TYPE_EXCLAMATORY, SENTENCE_TYPE_QUESTION } from "../types/structure";
+import { segmentSentence } from "./segmentation/sentence-segmentation";
 
 export function analyseText(text: string) {
-    const natural = require('natural');
 
     const textParagraphs = splitIntoParagraphs(text);
     const paragraphs: Paragraph[] = []
@@ -9,16 +9,34 @@ export function analyseText(text: string) {
     const paragraphCounter = 1;
 
     textParagraphs.forEach(paragraph => {
-        const sentencetokenizer = new natural.SentenceTokenizer();
-        const textSentences: string[] = sentencetokenizer.tokenize();
-
-        textSentences.forEach(element => {
-            console.log(" -- " + element)
-        });
+        const textSentences: string[] = segmentSentence(paragraph);
 
         const paragraphObj: Paragraph = {
             id: paragraphCounter,
-            sentences: []
+            sentences: textSentences.map((sentence, id) => { 
+                
+                let sentenceType = SENTENCE_TYPE_ELLIPSIS;
+                
+                if(sentence.length > 2) {
+                    if(sentence.endsWith(".")) {
+                        sentenceType = SENTENCE_TYPE_DECLARATIVE;
+                    } else if(sentence.endsWith("?")) {
+                        sentenceType = SENTENCE_TYPE_QUESTION;
+                    } else if(sentence.endsWith("!")) {
+                        sentenceType = SENTENCE_TYPE_EXCLAMATORY;
+                    } else if(sentence.endsWith("!")) {
+
+                    }
+                }
+
+                return {
+                    id: id,
+                    sentence: sentence,
+                    sentenceType: 0,
+                    wordCount: 0,
+                    words: []
+                }
+            })
         }
     });
 

@@ -1,3 +1,9 @@
+export interface Result {
+    documents: Document[],
+    words: Word[],
+    metainfo: MetaInformation
+}
+
 export interface Document {
     id: number,
     paragraphs: Paragraph[]
@@ -27,6 +33,15 @@ export interface Word {
     sentences: number[]
 }
 
-export const SENTENCE_TYPE_DECLARATIVE = 0
-export const SENTENCE_TYPE_QUESTION = 1
-export const SENTENCE_TYPE_IMPERATIVE = 2
+export interface MetaInformation {
+    processingTime: number,
+}
+
+export const SENTENCE_TYPE_UNKNOWN = 0
+export const SENTENCE_TYPE_DECLARATIVE = 1
+export const SENTENCE_TYPE_QUESTION = 2
+export const SENTENCE_TYPE_EXCLAMATORY = 3
+export const SENTENCE_TYPE_QUOTE_DECLARATIVE = 10
+export const SENTENCE_TYPE_QUOTE_QUESTION = 11
+export const SENTENCE_TYPE_QUOTE_EXCLAMATORY = 12
+export const SENTENCE_TYPE_QUOTE_UNKNOWN = 13

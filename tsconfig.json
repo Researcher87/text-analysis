@@ -23,7 +23,7 @@
   "include": [
     "src",
     ".d.ts"
-  ],
+, "test/sentence-segmentation.test.ts"  ],
   "exclude": [
     "node_modules"
   ]
