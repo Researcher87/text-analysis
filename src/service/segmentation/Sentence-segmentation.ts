@@ -48,7 +48,6 @@ export function segmentSentence(inputText: string): string[] {
                     // Do not split after certain words like Dr., Prof. and the like
                     let exceptionWord = false
                     allExceptions.forEach(exception => {
-                        console.log(previousPart + " : " + exception)
                         if(previousPart.endsWith(" " + exception)) {
                             exceptionWord = true;
                             return;
@@ -96,7 +95,7 @@ export function segmentSentence(inputText: string): string[] {
         }
     }
 
-    // If not sentence was detected, the whole input will be considered to be one sentence (e.g. "Kapitel 1")
+    // If no sentence was detected, the whole input will be considered to be one sentence (e.g. "Kapitel 1")
     if(sentences.length === 0) {
         sentences.push(inputText)
     }

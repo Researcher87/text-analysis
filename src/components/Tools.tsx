@@ -3,7 +3,7 @@ import "./Tools.scss"
 import { useContext, useState } from "react";
 import { applicationStrings } from "../static/applicationStrings";
 import { LanguageContext } from "../context/LanguageContext";
-import SentenceSegmentationPage from "./tools/SentenceSegmentationPage";
+import SentenceSegmentationPage from "./tools/SentenceSearchPage";
 import TechnicalInformationPage from "./tools/TechnicalInformationPage";
 
 function Tools() {
@@ -41,7 +41,7 @@ function Tools() {
                 {applicationStrings.menuitem_tools_technical[language]}
             </Button>
         </div>
-        <div>
+        <div className="w-100">
             {renderPage()}
         </div>
     </div>

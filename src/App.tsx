@@ -8,19 +8,22 @@ import Import from './components/Import';
 import Analysis from './components/Analysis';
 import { Navigate, Route, Routes } from 'react-router';
 import Tools from './components/Tools';
+import { ApplicationContextProvider } from './context/ApplicationContext';
 
 function App() {
   return (
       <div className="App">
           <LanguageProvider>
-            <Header/>
-            <Routes>
-              <Route path={"/"} element={<Navigate to={PATH_HOME} replace={true} />}/>
-              <Route path={PATH_HOME} Component={Home}/>
-              <Route path={PATH_IMPORT} Component={Import}/>
-              <Route path={PATH_ANALYSIS} Component={Analysis}/>
-              <Route path={PATH_TOOLS} Component={Tools}/>
-            </Routes>
+            <ApplicationContextProvider>
+              <Header/>
+              <Routes>
+                <Route path={"/"} element={<Navigate to={PATH_HOME} replace={true} />}/>
+                <Route path={PATH_HOME} Component={Home}/>
+                <Route path={PATH_IMPORT} Component={Import}/>
+                <Route path={PATH_ANALYSIS} Component={Analysis}/>
+                <Route path={PATH_TOOLS} Component={Tools}/>
+              </Routes>
+            </ApplicationContextProvider>
           </LanguageProvider>
       </div>
   );

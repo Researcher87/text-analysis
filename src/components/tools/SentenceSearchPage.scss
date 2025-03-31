@@ -1,0 +1,27 @@
+.sentence-page {
+    min-width: 80%;
+    max-width: 80%;
+    align-items: center;
+    text-align: center;
+    margin: 1ch auto;
+}
+
+.sentence-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2ch;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin: 3ch auto;
+    text-align: center;
+    min-height: 40vh;
+    width: 100%;
+  }
+
+  .sentence-text {
+    font-size: 1.5em;
+    font-style: italic;
+    color: #666;
+  }

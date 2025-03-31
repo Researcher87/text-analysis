@@ -16,6 +16,7 @@ export interface Paragraph {
 
 export interface Sentence {
     id: number,
+    sentence: string,
     wordCount: number,
     sentenceType: number
     words: Token[]

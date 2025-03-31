@@ -3,6 +3,10 @@ export const applicationStrings: any = {
         "de": "Übernehmen",
         "en": "Apply"
     },
+    _delete: {
+        "de": "Löschen",
+        "en": "Delete"
+    },
     _edit: {
         "de": "Bearbeiten",
         "en": "Edit"
@@ -22,6 +26,26 @@ export const applicationStrings: any = {
     label_language_en: {
         "de": "Englisch",
         "en": "English"
+    },
+    label_sentencesearch_result: {
+        "de": "Satz #1 von #2.",
+        "en": "Sentence #1 out of #2."
+    },
+    label_sortoption: {
+        "de": "Sortierung",
+        "en": "Sort option"
+    },
+    label_sortoption_id: {
+        "de": "Auftreten",
+        "en": "Appearance"
+    },
+    label_sortoption_lexicographic: {
+        "de": "Alphabetisch",
+        "en": "Lexicographic"
+    },
+    label_sortoption_random: {
+        "de": "Zufall",
+        "en": "Random"
     },
     menu_analysis: {
         "de": "Analyse",
@@ -47,4 +71,8 @@ export const applicationStrings: any = {
         "de": "Technische Informationen",
         "en": "Technical information"
     },
+    message_no_result: {
+        "de": "Kein Ergebnis.",
+        "en": "No result."
+    }
 }
