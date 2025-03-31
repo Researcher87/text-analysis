@@ -1,3 +1,7 @@
+$sidebar-color: #9ccbe8;
+$sidebar-font-color: white;
+$sidebar-font-color-selected: yellow;
+
 .App {
   text-align: center;
 }
@@ -11,4 +15,21 @@
 // General radio button used in form. Keep distance to left elements (such as other radio buttons).
 .app-radiobutton {
   margin-left: 1.5ch;
+}
+
+.sidebar {
+    width: 32ch;
+    height: 100%;
+    background-color: $sidebar-color;
+}
+
+// Menu buttons (page buttons) in the header.
+.sidebar-button {
+    font-size: 1.25rem !important;
+    color: $sidebar-font-color !important
+}
+
+// Active menu button (selected page).
+.sidebar-button.active, .header-button:active {
+    color: $sidebar-font-color-selected !important;
 }

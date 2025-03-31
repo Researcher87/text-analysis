@@ -1,6 +1,6 @@
 export interface Result {
     documents: Document[],
-    words: Word[],
+    words: Map<String, Word>,
     metainfo: MetaInformation
 }
 
@@ -19,13 +19,7 @@ export interface Sentence {
     sentence: string,
     wordCount: number,
     sentenceType: number
-    words: Token[]
-}
-
-export interface Token {
-    wordId: number,
-    position: number,
-    environment: number[]
+    words: string[]
 }
 
 export interface Word {
