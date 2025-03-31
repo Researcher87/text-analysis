@@ -1,4 +1,4 @@
-import { Document, Paragraph, SENTENCE_TYPE_DECLARATIVE, SENTENCE_TYPE_ELLIPSIS, SENTENCE_TYPE_EXCLAMATORY, SENTENCE_TYPE_QUESTION } from "../types/structure";
+import { Document, Paragraph, SENTENCE_TYPE_DECLARATIVE, SENTENCE_TYPE_QUOTE_UNKNOWN, SENTENCE_TYPE_EXCLAMATORY, SENTENCE_TYPE_QUESTION, SENTENCE_TYPE_UNKNOWN } from "../types/structure";
 import { segmentSentence } from "./segmentation/sentence-segmentation";
 
 export function analyseText(text: string) {
@@ -15,7 +15,7 @@ export function analyseText(text: string) {
             id: paragraphCounter,
             sentences: textSentences.map((sentence, id) => { 
                 
-                let sentenceType = SENTENCE_TYPE_ELLIPSIS;
+                let sentenceType = SENTENCE_TYPE_UNKNOWN;
                 
                 if(sentence.length > 2) {
                     if(sentence.endsWith(".")) {

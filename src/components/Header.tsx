@@ -1,5 +1,5 @@
 import {Button, Form} from "react-bootstrap";
-import { PATH_ANALYSIS, PATH_HOME, PATH_IMPORT } from '../constants/Paths';
+import { PATH_ANALYSIS, PATH_HOME, PATH_IMPORT, PATH_TOOLS } from '../constants/Paths';
 import "./Header.scss"
 import "./../App.scss"
 import { applicationStrings } from '../static/applicationStrings';
@@ -79,6 +79,14 @@ function Header() {
                             value={PATH_ANALYSIS}
                             variant={'link'}>
                             {applicationStrings.menu_analysis[language]}
+                    </Button>
+                </Link>
+                <Link to={PATH_TOOLS}>
+                    <Button className={"btn btn-link header-button"}
+                            active={activePath === PATH_TOOLS}
+                            value={PATH_TOOLS}
+                            variant={'link'}>
+                            {applicationStrings.menu_tools[language]}
                     </Button>
                 </Link>
             </div>

@@ -35,4 +35,16 @@ export const applicationStrings: any = {
         "de": "Import",
         "en": "Import"
     },
+    menu_tools: {
+        "de": "Tools",
+        "en": "Tools"
+    },
+    menuitem_tools_sentences: {
+        "de": "Satzsegmentierung",
+        "en": "Sentence segmentation"
+    },
+    menuitem_tools_technical: {
+        "de": "Technische Informationen",
+        "en": "Technical information"
+    },
 }
