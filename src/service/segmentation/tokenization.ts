@@ -5,7 +5,7 @@
  */
 export function tokenize(sentence: string): string[] {
     // Remove all unnecessary sentence marks.
-    const cleanedSentence = sentence.replace(/[.,;?!"':*()«»]+/g, "")
+    const cleanedSentence = sentence.replace(/[.,;?!"':*()«»><›‹…„“]+/g, "")
 
     // Split by space
     const words = cleanedSentence.split(/\s+/).filter(word => word.length > 0);

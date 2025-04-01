@@ -75,7 +75,6 @@ function SentenceSegmentationPage() {
     </div>
   }
 
-
   const renderSentenceCard = () => {
     return (
       <div className="sentence-card">

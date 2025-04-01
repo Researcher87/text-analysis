@@ -15,6 +15,26 @@ export const applicationStrings: any = {
         "de": "Beispiel",
         "en": "Sample"
     },
+    label_filter_contains: {
+        "de": "Enthält",
+        "en": "Contains"
+    },
+    label_filter_endsWith: {
+        "de": "Endet mit",
+        "en": "ends with"
+    },
+    label_filter_equals: {
+        "de": "gleich",
+        "en": "Equals"
+    },
+    label_filter_regex: {
+        "de": "Regex",
+        "en": "Regex"
+    },
+    label_filter_startswith: {
+        "de": "Beginnt mit",
+        "en": "Starts with"
+    },
     label_language: {
         "de": "Sprache",
         "en": "Language"
@@ -38,6 +58,10 @@ export const applicationStrings: any = {
     label_sortoption_id: {
         "de": "Auftreten",
         "en": "Appearance"
+    },
+    label_sortoption_frequency: {
+        "de": "Häufigkeit",
+        "en": "Frequency"
     },
     label_sortoption_lexicographic: {
         "de": "Alphabetisch",
@@ -63,6 +87,14 @@ export const applicationStrings: any = {
         "de": "Tools",
         "en": "Tools"
     },
+    menuitem_analysis_corpus_statistics: {
+        "de": "Korpusstatistik",
+        "en": "Corpus statistics"
+    },
+    menuitem_analysis_word_frequency: {
+        "de": "Worthäufigkeit",
+        "en": "Word frequency"
+    },
     menuitem_tools_sentences: {
         "de": "Satzsegmentierung",
         "en": "Sentence segmentation"
@@ -74,5 +106,33 @@ export const applicationStrings: any = {
     message_no_result: {
         "de": "Kein Ergebnis.",
         "en": "No result."
+    },
+    table_key_paragraphs: {
+        "de": "Absätze",
+        "en": "Paragraphs"
+    },
+    table_key_sentences: {
+        "de": "Sätze",
+        "en": "Sentences"
+    },
+    table_key_sentences_per_paragraph: {
+        "de": "Sätze pro Absatz",
+        "en": "Sentences per paragraph"
+    },
+    table_key_unique_words: {
+        "de": "Verschiedene Wörter",
+        "en": "Unique words"
+    },
+    table_key_words: {
+        "de": "Wörter",
+        "en": "Words"
+    },
+    table_key_words_per_paragraph: {
+        "de": "Wörter pro Absatz",
+        "en": "Words per paragraph"
+    },
+    table_key_words_per_sentence: {
+        "de": "Wörter pro Satz",
+        "en": "Words per sentence"
     }
 }

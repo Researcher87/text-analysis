@@ -13,6 +13,7 @@ import { tokenize } from "./segmentation/tokenization";
 export function analyseText(text: string): Result {
   const textParagraphs = splitIntoParagraphs(text);
   const paragraphs: Paragraph[] = [];
+  let wordCount = 0;
 
   const paragraphCounter = 1;
   let sentenceCounter = 0;
@@ -45,6 +46,7 @@ export function analyseText(text: string): Result {
 
         const words = tokenize(sentence);
         words.forEach(word => addWord(word, sentenceCounter))
+        wordCount += words.length
 
         return {
           id: sentenceCounter,
@@ -69,6 +71,7 @@ export function analyseText(text: string): Result {
 
   const result: Result = {
     documents: documents,
+    wordCount,
     words: wordMap,
     metainfo: {
       processingTime: 0,

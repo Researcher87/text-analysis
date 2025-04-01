@@ -1,5 +1,22 @@
 import { SENTENCE_SORT_ID, SENTENCE_SORT_LEXICOGRAPHIC } from "../components/tools/SentenceSearchPage";
-import { Result, Sentence } from "../types/structure";
+import { Paragraph, Result, Sentence } from "../types/structure";
+
+/**
+ * Returns all paragraphs in the NLP result set (corpus).
+ * @param result The NLP result set.
+ * @returns A list of all paragraph objects in the result set.
+ */
+ export function getAllParagraphs(result: Result): Paragraph[] {
+    const paragraphs: Paragraph[] = [];
+
+    result.documents.forEach(document => {
+        document.paragraphs.forEach(paragraph => {
+            paragraphs.push(paragraph)
+        })
+    })
+
+    return paragraphs;
+}
 
 /**
  * Returns all sentences in the NLP result set (corpus).

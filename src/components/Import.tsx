@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { LanguageContext } from "../context/LanguageContext";
 import { applicationStrings } from "../static/applicationStrings";
 
-import sampleDe from "../static/sample_de.txt";
+import sampleDe from "../static/sample_de2.txt";
 import sampleEn from "../static/sample_en.txt";
 import { LANGUAGE_DE } from "../constants/Language";
 import { analyseText } from "../service/LinguisticAnalysis";

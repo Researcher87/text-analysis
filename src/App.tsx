@@ -1,4 +1,5 @@
 import './App.scss';
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 
 import Header from './components/Header';
 import { LanguageProvider } from './context/LanguageContext';
@@ -9,6 +10,7 @@ import Analysis from './components/Analysis';
 import { Navigate, Route, Routes } from 'react-router';
 import Tools from './components/Tools';
 import { ApplicationContextProvider } from './context/ApplicationContext';
+
 
 function App() {
   return (

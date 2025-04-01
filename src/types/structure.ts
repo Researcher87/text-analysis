@@ -1,6 +1,7 @@
 export interface Result {
     documents: Document[],
-    words: Map<String, Word>,
+    wordCount: number,
+    words: Map<string, Word>,
     metainfo: MetaInformation
 }
 
