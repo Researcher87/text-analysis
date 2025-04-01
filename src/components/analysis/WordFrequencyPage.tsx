@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext } from "react"
 import BootstrapTable from "react-bootstrap-table-next"
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { LanguageContext } from "../../context/LanguageContext"
@@ -6,13 +6,6 @@ import { Result, Word } from "../../types/structure";
 import { Form } from "react-bootstrap";
 import { applicationStrings } from "../../static/applicationStrings";
 import { ApplicationContext } from "../../context/ApplicationContext";
-import { SENTENCE_SORT_RANDOM } from "../tools/SentenceSearchPage";
-import { numericLiteral } from "@babel/types";
-import { number, string } from "yargs";
-
-const WF_OPTION_FREQUENCY = 0
-const WF_OPTION_ID = 1
-const WF_OPTION_LEXICOGRAPHIC = 2
 
 const FILTER_VARIANT_STARTSWITH = 0
 const FILTER_VARIANT_CONTAINS = 1
@@ -97,8 +90,6 @@ function WordFrequencyTable(props: { nlpResult: Result }) {
         sort: true
     },
     ];
-
-    console.log("Re-render", tableData)
 
     return <div className="d-flex flex-column sentence-page justify-content-center" style={{ width: "80%" }}>
         <div className="d-flex flex-row align-items-left mb-3 mt-3">

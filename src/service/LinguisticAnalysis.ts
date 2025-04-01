@@ -2,6 +2,7 @@ import {
   Document,
   Paragraph,
   Result,
+  Sentence,
   Word,
 } from "../types/structure";
 import {
@@ -19,6 +20,8 @@ export function analyseText(text: string): Result {
   let sentenceCounter = 0;
 
   const wordMap = new Map<string, Word>();
+
+  const start = performance.now()
 
   function addWord(word: string, sentenceId: number) {
     if (wordMap.has(word)) {
@@ -69,12 +72,14 @@ export function analyseText(text: string): Result {
 
   documents.push(document);
 
+  const end = performance.now()
+
   const result: Result = {
     documents: documents,
     wordCount,
     words: wordMap,
     metainfo: {
-      processingTime: 0,
+      processingTime: end - start,
     },
   };
 

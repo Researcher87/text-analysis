@@ -1,4 +1,4 @@
-import { SENTENCE_SORT_ID, SENTENCE_SORT_LEXICOGRAPHIC } from "../components/tools/SentenceSearchPage";
+import { SENTENCE_SORT_ID, SENTENCE_SORT_LEXICOGRAPHIC } from "../components/tools/SentenceSegmentationPage";
 import { Paragraph, Result, Sentence } from "../types/structure";
 
 /**
@@ -66,20 +66,22 @@ export function sortSentences(sentences: Sentence[], sortOption: number, randomK
  * @param sentences A list of sentence objects.
  * @param key The random key (> 0)
  */
- export function randomSort(sentences: Sentence[], key: number): Sentence[] {
-    if(sentences.length <= 2) {
-        return sentences;
+ export function randomSort(input: Sentence[], key: number): Sentence[] {
+    if(input.length <= 2) {
+        return input;
     }
 
+    const sentences = [...input]
     const result: Sentence[] = []
 
-    const leapValue1 = Math.round(sentences.length / 2) + 100 + key;
-    const leapValue2 = Math.round(sentences.length / 3) + key;
-
-    let index1 = leapValue1;
-    let index2 = leapValue2;
+    let index1 = key;
 
     while(sentences.length >= 1) {
+
+        // Pick first sentence using random function 1 (leap1):
+        let leapValue1 = Math.round(sentences.length / 3) + 1 + key;
+        index1 += leapValue1
+
         while(index1 >= sentences.length) {
             index1 -= sentences.length;
         }
@@ -87,8 +89,10 @@ export function sortSentences(sentences: Sentence[], sortOption: number, randomK
         const sentence = sentences[index1]
         result.push(sentence)
         sentences.splice(index1, 1)
-        index1 += leapValue1
 
+        // Pick second sentence using random function 2 (leap2, based on the result of leap1):
+        let leapValue2 = Math.round(sentences.length / 2) + 1 + key;
+        let index2 = index1 + leapValue2
         while(index2 >= sentences.length) {
             index2 -= sentences.length;
         }
@@ -96,7 +100,6 @@ export function sortSentences(sentences: Sentence[], sortOption: number, randomK
         const sentence2 = sentences[index2]
         result.push(sentence2)
         sentences.splice(index2, 1)
-        index2 += leapValue2
     }
 
     return result;

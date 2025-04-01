@@ -3,6 +3,10 @@ export const applicationStrings: any = {
         "de": "Übernehmen",
         "en": "Apply"
     },
+    _cancel: {
+        "de": "Abbrechen",
+        "en": "Cancel"
+    },
     _delete: {
         "de": "Löschen",
         "en": "Delete"
@@ -14,6 +18,10 @@ export const applicationStrings: any = {
     _sample: {
         "de": "Beispiel",
         "en": "Sample"
+    },
+    label_case_sensitive: {
+        "de": "G/K-Schreibung",
+        "en": "Case-sensitive"
     },
     label_filter_contains: {
         "de": "Enthält",
@@ -27,6 +35,10 @@ export const applicationStrings: any = {
         "de": "gleich",
         "en": "Equals"
     },
+    label_filter_free: {
+        "de": "Freie Suche",
+        "en": "Free search"
+    },
     label_filter_regex: {
         "de": "Regex",
         "en": "Regex"
@@ -34,6 +46,10 @@ export const applicationStrings: any = {
     label_filter_startswith: {
         "de": "Beginnt mit",
         "en": "Starts with"
+    },
+    label_filter_words: {
+        "de": "Wörter",
+        "en": "Words"
     },
     label_language: {
         "de": "Sprache",
@@ -107,6 +123,18 @@ export const applicationStrings: any = {
         "de": "Kein Ergebnis.",
         "en": "No result."
     },
+    modal_sentence_page: {
+        "de": "Springe zu Satz...",
+        "en": "Skip to sentence..."
+    },
+    table_key_memory: {
+        "de": "Speicherbelegung NLP-Objekt",
+        "en": "Memory usage of the NLP object"
+    },
+    table_key_processing_time: {
+        "de": "Verarbeitungszeit (NLP)",
+        "en": "Processing time (NLP)"
+    },
     table_key_paragraphs: {
         "de": "Absätze",
         "en": "Paragraphs"
@@ -134,5 +162,9 @@ export const applicationStrings: any = {
     table_key_words_per_sentence: {
         "de": "Wörter pro Satz",
         "en": "Words per sentence"
+    },
+    toast_invalid_input: {
+        "de": "Ungültige Eingabe!",
+        "en": "Invalid input!"
     }
 }

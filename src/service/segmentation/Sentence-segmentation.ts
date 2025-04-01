@@ -1,6 +1,6 @@
 import { SENTENCE_TYPE_DECLARATIVE, SENTENCE_TYPE_EXCLAMATORY, SENTENCE_TYPE_QUESTION, SENTENCE_TYPE_QUOTE_DECLARATIVE, SENTENCE_TYPE_QUOTE_EXCLAMATORY, SENTENCE_TYPE_QUOTE_QUESTION, SENTENCE_TYPE_UNKNOWN } from "../../types/structure";
 
-const generalExceptions = ["Dr", "Mr", "Mrs", "Prof"];
+const generalExceptions = ["Dr", "Mr", "Mrs", "Ms", "Prof"];
 const germanExceptions = ["Fr", "Gr", "Hr", "Kl"]
 const allExceptions = [...new Set([...generalExceptions, ...germanExceptions])];
 
