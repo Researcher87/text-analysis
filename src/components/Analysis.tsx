@@ -17,7 +17,7 @@ function Analysis() {
     const { nlpResult } = useContext(ApplicationContext)
 
     if(!nlpResult) {
-        return <div>{applicationStrings.message_no_result[language]}</div>
+        return <div className="no-result">{applicationStrings.message_no_result[language]}</div>
     }
 
     const renderPage = () => {
