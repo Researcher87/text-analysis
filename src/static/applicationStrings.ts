@@ -23,9 +23,21 @@ export const applicationStrings: any = {
         "de": "Beispiel",
         "en": "Sample"
     },
+    _tokens: {
+        "de": "Token",
+        "en": "Tokens"
+    },
+    _types: {
+        "de": "Typen",
+        "en": "Types"
+    },
     label_case_sensitive: {
         "de": "G/K-Schreibung",
         "en": "Case-sensitive"
+    },
+    label_chart_character_count: {
+        "de": "Zeichen",
+        "en": "Characters"
     },
     label_chart_word_count: {
         "de": "Wörter",
@@ -131,13 +143,21 @@ export const applicationStrings: any = {
         "de": "Korpusstatistik",
         "en": "Corpus statistics"
     },
+    menuitem_analysis_paragraph_length: {
+        "de": "Absatzlängen",
+        "en": "Paragraph lengths"
+    },
+    menuitem_analysis_sentence_length: {
+        "de": "Satzlängen",
+        "en": "Sentence lengths"
+    },
     menuitem_analysis_word_frequency: {
         "de": "Worthäufigkeit",
         "en": "Word frequency"
     },
-    menuitem_analysis_sentence_length: {
-        "de": "Satzlänge",
-        "en": "Sentence length"
+    menuitem_analysis_word_length: {
+        "de": "Wortlängen",
+        "en": "Word lengths"
     },
     menuitem_tools_sentences: {
         "de": "Satzsegmentierung",

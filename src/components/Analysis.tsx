@@ -6,12 +6,16 @@ import { LanguageContext } from "../context/LanguageContext";
 import { ApplicationContext } from "../context/ApplicationContext";
 import WordFrequencyTable from "./analysis/WordFrequencyPage";
 import SentenceLengthChart from "./analysis/SentenceLengthChart";
+import ParagraphLengthChart from "./analysis/ParagraphLengthChart";
+import WordLengthChart from "./analysis/WordLengthChart";
 
 function Analysis() {
 
     const PAGE_CORPUS_STATISTICS = 1;
     const PAGE_WORD_FREQUENCY = 2;
     const PAGE_CHART_SENTENCE_LENGTH = 3;
+    const PAGE_CHART_WORD_LENGTH = 4;
+    const PAGE_CHART_PARAGRAPH_LENGTH = 5;
 
     const {language} = useContext(LanguageContext)
     const [activePage, setActivePage] = useState<number>(PAGE_CORPUS_STATISTICS);
@@ -30,13 +34,17 @@ function Analysis() {
                     return <WordFrequencyTable nlpResult={nlpResult}/>
             case PAGE_CHART_SENTENCE_LENGTH:
                     return <SentenceLengthChart/>
+            case PAGE_CHART_WORD_LENGTH:
+                    return <WordLengthChart/>
+            case PAGE_CHART_PARAGRAPH_LENGTH:
+                    return <ParagraphLengthChart/>
             default:
                 return "Unknown page"
         }
     }
 
     return <div className="d-flex flex-row">
-        <div className="sidebar">
+        <div className="d-flex flex-column sidebar">
             <Button className={"btn btn-link sidebar-button"}
                     active={activePage === PAGE_CORPUS_STATISTICS}
                     onClick={() => {setActivePage(PAGE_CORPUS_STATISTICS)}}
@@ -54,6 +62,18 @@ function Analysis() {
                     onClick={() => {setActivePage(PAGE_CHART_SENTENCE_LENGTH)}}
                     variant={'link'}>
                 {applicationStrings.menuitem_analysis_sentence_length[language]}
+            </Button>
+            <Button className={"btn btn-link sidebar-button"}
+                    active={activePage === PAGE_CHART_WORD_LENGTH}
+                    onClick={() => {setActivePage(PAGE_CHART_WORD_LENGTH)}}
+                    variant={'link'}>
+                {applicationStrings.menuitem_analysis_word_length[language]}
+            </Button>
+            <Button className={"btn btn-link sidebar-button"}
+                    active={activePage === PAGE_CHART_PARAGRAPH_LENGTH}
+                    onClick={() => {setActivePage(PAGE_CHART_PARAGRAPH_LENGTH)}}
+                    variant={'link'}>
+                {applicationStrings.menuitem_analysis_paragraph_length[language]}
             </Button>
         </div>
         <div className="w-100">

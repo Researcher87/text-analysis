@@ -1,16 +1,12 @@
-import {Bar} from "react-chartjs-2";
+import { useContext } from "react"
+import { ApplicationContext } from "../../context/ApplicationContext"
+import { LanguageContext } from "../../context/LanguageContext"
+import { applicationStrings } from "../../static/applicationStrings"
+import { getAllParagraphs } from "../../service/AnalyticsHelper"
+import { CHART_COLOR_BLUE } from "../../constants/ChartConfig"
+import { Bar } from "react-chartjs-2"
 
-import { Chart, registerables} from 'chart.js';
-import { applicationStrings } from "../../static/applicationStrings";
-import { useContext } from "react";
-import { LanguageContext } from "../../context/LanguageContext";
-import { ApplicationContext } from "../../context/ApplicationContext";
-import { CHART_COLOR_BLUE } from "../../constants/ChartConfig";
-import { getAllSentences } from "../../service/AnalyticsHelper";
-
-Chart.register(...registerables);
-
-function SentenceLengthChart() {
+function ParagraphLengthChart() {
 
     const { language } = useContext(LanguageContext)
     const { nlpResult } = useContext(ApplicationContext)
@@ -19,7 +15,7 @@ function SentenceLengthChart() {
         return <div>{applicationStrings.message_no_result[language]}</div>
     }
 
-    const maxLength = 40
+    const maxLength = 150
     const labels: string[] = []
     const values: number[] = []
 
@@ -28,10 +24,15 @@ function SentenceLengthChart() {
         values.push(0)
     }
 
-    const allSentences = getAllSentences(nlpResult)
-    allSentences.forEach(sentence => {
-        if(sentence.words.length <= maxLength) {
-            values[sentence.words.length-1] += 1
+    const allParagraphs = getAllParagraphs(nlpResult)
+    allParagraphs.forEach(paragraph => {
+        let wordCount = 0;
+        paragraph.sentences.forEach(sentence => {
+            wordCount += sentence.wordCount
+        })
+
+        if(wordCount <= maxLength) {
+            values[wordCount] += 1
         }
     })
 
@@ -84,6 +85,7 @@ function SentenceLengthChart() {
         {renderChartArea()}
     </div>
 
+
 }
 
-export default SentenceLengthChart
+export default ParagraphLengthChart

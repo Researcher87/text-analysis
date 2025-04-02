@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import { Result, Sentence } from "../types/structure";
 import { SENTENCE_SORT_ID } from "../components/tools/SentenceSegmentationPage";
+import { Chart } from "chart.js";
 
 export const initialSentenceSearchParams: SentenceSearchProps = {
     selectedSentence: 0,
@@ -17,15 +18,22 @@ export const initialWordFrequencyParams: WordFrequencyProps = {
     sortOption: 0
 }
 
+export const initialChartOptions: ChartOptionsProps = {
+    wordLengthSelection: 0,
+    paragraphLengthSelection: 0,
+}
+
 export interface ApplicationContextProviderProps {
     nlpResult: Result | null
     inputText: string
     sentenceSearchParameters: SentenceSearchProps
     wordFrequencyParameters: WordFrequencyProps
+    chartOptionParameters: ChartOptionsProps
     updateNlpResult: (nlpResult: Result) => void
     updateInputText: (text: string) => void
     updateSentenceSearchParameters: (props: SentenceSearchProps) => void
     updateWordFrequencyParameters: (props: WordFrequencyProps) => void
+    updateChartOptionParameters: (props: ChartOptionsProps) => void
 }
 
 export interface SentenceSearchProps {
@@ -43,25 +51,36 @@ export interface WordFrequencyProps {
     sortOption: number
 }
 
+export interface ChartOptionsProps {
+    wordLengthSelection: number,
+    paragraphLengthSelection: number
+}
+
 export const ApplicationContext = createContext<ApplicationContextProviderProps>({
     nlpResult: null,
     inputText: "",
     sentenceSearchParameters: initialSentenceSearchParams,
     wordFrequencyParameters: initialWordFrequencyParams,
+    chartOptionParameters: initialChartOptions,
     updateNlpResult: () => {return null},
     updateInputText: () => {return ""},
     updateSentenceSearchParameters: () => initialSentenceSearchParams,
-    updateWordFrequencyParameters: () => initialWordFrequencyParams
+    updateWordFrequencyParameters: () => initialWordFrequencyParams,
+    updateChartOptionParameters: () => initialChartOptions
 });
 
 export function ApplicationContextProvider( {children}: any): any {
     const [nlpResult, setNlpResult] = useState<Result | null>(null);
     const [inputText, setInputText] = useState<string>("");
+
     const [sentenceSearchParameters, setSentenceSearchParameters] 
         = useState<SentenceSearchProps>(initialSentenceSearchParams)
 
     const [wordFrequencyParameters, setWordFrequencyParameters] 
         = useState<WordFrequencyProps>(initialWordFrequencyParams)
+
+    const [chartOptionParameters, setChartOptionParameters] 
+        = useState<ChartOptionsProps>(initialChartOptions)
 
     const updateNlpResult = (nlpResult: Result): void => {
         setNlpResult(nlpResult);
@@ -79,15 +98,21 @@ export function ApplicationContextProvider( {children}: any): any {
         setWordFrequencyParameters(wordFrequencyParameters)
     }
 
+    const updateChartOptionParameters = (chartOptionsParameters: ChartOptionsProps): void => {
+        setChartOptionParameters(chartOptionsParameters)
+    }
+
     const provider: ApplicationContextProviderProps = {
         nlpResult,
         inputText,
         sentenceSearchParameters,
         wordFrequencyParameters,
+        chartOptionParameters,
         updateNlpResult,
         updateInputText,
         updateSentenceSearchParameters,
-        updateWordFrequencyParameters
+        updateWordFrequencyParameters,
+        updateChartOptionParameters
     };
 
     return (

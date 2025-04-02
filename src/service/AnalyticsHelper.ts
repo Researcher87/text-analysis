@@ -1,5 +1,5 @@
 import { SENTENCE_SORT_ID, SENTENCE_SORT_LENGTH, SENTENCE_SORT_LEXICOGRAPHIC, SENTENCE_SORT_RANDOM } from "../components/tools/SentenceSegmentationPage";
-import { Paragraph, Result, Sentence } from "../types/structure";
+import { Paragraph, Result, Sentence, Word } from "../types/structure";
 
 /**
  * Returns all paragraphs in the NLP result set (corpus).
@@ -33,6 +33,16 @@ export function getAllSentences(result: Result): Sentence[] {
     })
 
     return sentences;
+}
+
+
+/**
+ * Returns all word objects in the NLP result set (corpus).
+ * @param result The NLP result set.
+ * @returns A list of all word objects in the result set.
+ */
+ export function getAllWords(result: Result): Word[] {
+    return [...result.words.values()]
 }
 
 
