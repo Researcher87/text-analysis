@@ -63,9 +63,17 @@ export const applicationStrings: any = {
         "de": "Englisch",
         "en": "English"
     },
+    label_sentence_length: {
+        "de": "Satzlänge: #1 Wörter (#2 Zeichen)",
+        "en": "Sentence length: #1 words (#2 characters)."
+    },
+    label_sentence_length_1w: {
+        "de": "Satzlänge: #1 Word (#2 Zeichen)",
+        "en": "Sentence length: #1 word (#2 characters)."
+    },
     label_sentencesearch_result: {
         "de": "Satz #1 von #2.",
-        "en": "Sentence #1 out of #2."
+        "en": "Sentence #1 of #2."
     },
     label_sortoption: {
         "de": "Sortierung",
@@ -79,6 +87,10 @@ export const applicationStrings: any = {
         "de": "Häufigkeit",
         "en": "Frequency"
     },
+    label_sortoption_length: {
+        "de": "Länge",
+        "en": "Length"
+    },
     label_sortoption_lexicographic: {
         "de": "Alphabetisch",
         "en": "Lexicographic"
@@ -86,6 +98,10 @@ export const applicationStrings: any = {
     label_sortoption_random: {
         "de": "Zufall",
         "en": "Random"
+    },
+    label_text_too_large: {
+        "de": "Text zu groß!",
+        "en": "Text exceeds limit!"
     },
     menu_analysis: {
         "de": "Analyse",
@@ -127,6 +143,18 @@ export const applicationStrings: any = {
         "de": "Springe zu Satz...",
         "en": "Skip to sentence..."
     },
+    table_key_first_appearance: {
+        "de": "Erstvorkommen",
+        "en": "1st appearance"
+    },
+    table_key_frequency: {
+        "de": "Häufigkeit",
+        "en": "Frequency"
+    },
+    table_key_length: {
+        "de": "Länge",
+        "en": "Length"
+    },
     table_key_memory: {
         "de": "Speicherbelegung NLP-Objekt",
         "en": "Memory usage of the NLP object"
@@ -151,6 +179,10 @@ export const applicationStrings: any = {
         "de": "Verschiedene Wörter",
         "en": "Unique words"
     },
+    table_key_word: {
+        "de": "Wort",
+        "en": "Word"
+    },
     table_key_words: {
         "de": "Wörter",
         "en": "Words"
@@ -166,5 +198,9 @@ export const applicationStrings: any = {
     toast_invalid_input: {
         "de": "Ungültige Eingabe!",
         "en": "Invalid input!"
+    },
+    toast_limit_exceeded: {
+        "de": "Der eingegebene Text ist zu groß!",
+        "en": "Text exceeds allowed limit."
     }
 }

@@ -17,6 +17,8 @@ interface TableData {
     id: number
     word: string
     frequency: number
+    wordLength: number
+    firstAppearance: number
 }
 
 function WordFrequencyTable(props: { nlpResult: Result }) {
@@ -67,32 +69,48 @@ function WordFrequencyTable(props: { nlpResult: Result }) {
         return {
             id: id + 1,
             word: word.word,
-            frequency: word.sentences.length
+            frequency: word.sentences.length,
+            wordLength: word.word.length,
+            firstAppearance: word.sentences[0]
         }
     })
 
     const columns = [{
         dataField: "id",
-        text: "No.",
+        text: "",
         headerStyle: () => {
-            return { width: "12ch" };
+            return { width: "6ch" };
         },
     }, {
         dataField: "word",
-        text: "Word",
+        text: applicationStrings.table_key_word[language],
         sort: true
     }, {
         dataField: "frequency",
-        text: "Frequency",
+        text: applicationStrings.table_key_frequency[language],
         headerStyle: () => {
-            return { width: "20ch" };
+            return { width: "13ch" };
+        },
+        sort: true
+    }, {
+        dataField: "wordLength",
+        text: applicationStrings.table_key_length[language],
+        headerStyle: () => {
+            return { width: "10ch" };
+        },
+        sort: true
+    }, {
+        dataField: "firstAppearance",
+        text: applicationStrings.table_key_first_appearance[language],
+        headerStyle: () => {
+            return { width: "16ch" };
         },
         sort: true
     },
     ];
 
-    return <div className="d-flex flex-column sentence-page justify-content-center" style={{ width: "80%" }}>
-        <div className="d-flex flex-row align-items-left mb-3 mt-3">
+    const renderFilterForm = () => {
+        return <div className="d-flex flex-row align-items-left mb-3 mt-3">
             <input className="border border-gray-300 rounded resize-none w-25 flex-row align-items-left"
                 value={wordFrequencyParameters.filter}
                 onChange={(e) => updateFilter(e.target.value)}
@@ -141,6 +159,12 @@ function WordFrequencyTable(props: { nlpResult: Result }) {
                     />
                 </div>
             </Form>
+        </div>
+    }
+
+    return <div className="d-flex flex-column sentence-page justify-content-center" style={{ width: "80%" }}>
+        <div className="d-flex flex-column justify-content-start filter-card">
+            {renderFilterForm()}
         </div>
         <BootstrapTable bootstrap4
             keyField='id'

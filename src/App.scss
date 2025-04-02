@@ -17,6 +17,13 @@ $sidebar-font-color-selected: yellow;
   margin-left: 1.5ch;
 }
 
+.filter-card {
+  padding: 2ch;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 100%;
+}
+
 .no-result {
   margin: 5vh;
 }

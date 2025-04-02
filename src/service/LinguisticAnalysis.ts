@@ -2,7 +2,6 @@ import {
   Document,
   Paragraph,
   Result,
-  Sentence,
   Word,
 } from "../types/structure";
 import {
@@ -11,7 +10,7 @@ import {
 } from "./segmentation/sentence-segmentation";
 import { tokenize } from "./segmentation/tokenization";
 
-export function analyseText(text: string): Result {
+export function analyseText(text: string, language: string): Result {
   const textParagraphs = splitIntoParagraphs(text);
   const paragraphs: Paragraph[] = [];
   let wordCount = 0;
@@ -47,7 +46,7 @@ export function analyseText(text: string): Result {
         const sentenceType = getSentenceType(sentence);
         sentenceCounter += 1;
 
-        const words = tokenize(sentence);
+        const words = tokenize(sentence, language);
         words.forEach(word => addWord(word, sentenceCounter))
         wordCount += words.length
 

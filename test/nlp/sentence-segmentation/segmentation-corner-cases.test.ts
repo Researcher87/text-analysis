@@ -44,4 +44,5 @@ describe('Tests corner cases of sentence segmentation.', () => {
     expect(result3[0]).toBe("Er nahm ein Ei.")
     expect(result3[1]).toBe("Dann schlug er es auf.")
   });
+
 })

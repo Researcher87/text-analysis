@@ -1,11 +1,9 @@
 import { createContext, useState } from "react";
 import { Result, Sentence } from "../types/structure";
 import { SENTENCE_SORT_ID } from "../components/tools/SentenceSegmentationPage";
-import WordFrequencyTable from "../components/analysis/WordFrequencyPage";
 
 export const initialSentenceSearchParams: SentenceSearchProps = {
     selectedSentence: 0,
-    filteredSentences: [],
     sortOption: SENTENCE_SORT_ID,
     randomKey: 0,
     filterText: "",
@@ -32,7 +30,6 @@ export interface ApplicationContextProviderProps {
 
 export interface SentenceSearchProps {
     selectedSentence: number,
-    filteredSentences: Sentence[],
     sortOption: number,
     randomKey: number,
     filterText: string,

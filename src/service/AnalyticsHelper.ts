@@ -1,4 +1,4 @@
-import { SENTENCE_SORT_ID, SENTENCE_SORT_LEXICOGRAPHIC } from "../components/tools/SentenceSegmentationPage";
+import { SENTENCE_SORT_ID, SENTENCE_SORT_LENGTH, SENTENCE_SORT_LEXICOGRAPHIC, SENTENCE_SORT_RANDOM } from "../components/tools/SentenceSegmentationPage";
 import { Paragraph, Result, Sentence } from "../types/structure";
 
 /**
@@ -48,9 +48,13 @@ export function sortSentences(sentences: Sentence[], sortOption: number, randomK
         case SENTENCE_SORT_ID:
             return sentences.sort((a, b) => a.id - b.id )
         case SENTENCE_SORT_LEXICOGRAPHIC:
-                return sentences.sort((a, b) => a.sentence.localeCompare(b.sentence))
+            return sentences.sort((a, b) => a.sentence.localeCompare(b.sentence))
+        case SENTENCE_SORT_LENGTH:
+                return sentences.sort((a, b) => a.sentence.length - b.sentence.length)
+        case SENTENCE_SORT_RANDOM:
+            return randomSort(sentences, randomKey ?? 1) 
         default:
-            return randomSort(sentences, randomKey ?? 1)        
+            return sentences
     }
 }
 
@@ -89,6 +93,11 @@ export function sortSentences(sentences: Sentence[], sortOption: number, randomK
         const sentence = sentences[index1]
         result.push(sentence)
         sentences.splice(index1, 1)
+
+        // Sentence list could be empty here. In this case DO NOT PROCEED.
+        if(sentences.length === 0) {
+            break;
+        }
 
         // Pick second sentence using random function 2 (leap2, based on the result of leap1):
         let leapValue2 = Math.round(sentences.length / 2) + 1 + key;

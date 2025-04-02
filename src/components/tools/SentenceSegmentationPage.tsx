@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import { ApplicationContext } from "../../context/ApplicationContext";
 import "./SentenceSegmentationPage.scss";
-import { ArrowLeft, ArrowRight, Dot, SkipEndFill, SkipStartFill } from 'react-bootstrap-icons';
+import { ArrowLeft, ArrowRight, Bullseye, SkipEndFill, SkipStartFill } from 'react-bootstrap-icons';
 import { applicationStrings } from "../../static/applicationStrings";
 import { LanguageContext } from "../../context/LanguageContext";
 import { Form } from "react-bootstrap";
@@ -13,6 +13,7 @@ import { filterSentences } from "../../service/SentenceFilter";
 export const SENTENCE_SORT_ID = 0
 export const SENTENCE_SORT_LEXICOGRAPHIC = 1
 export const SENTENCE_SORT_RANDOM = 2
+export const SENTENCE_SORT_LENGTH = 3
 
 export const FILTER_VARIANT_FREE = 0
 export const FILTER_VARIANT_WORDS = 1
@@ -38,9 +39,10 @@ function SentenceSegmentationPage() {
     }
   }
 
-  const {filterText, filterVariant, filterCaseSensitive } = sentenceSearchParameters
+  const {filterText, filterVariant, filterCaseSensitive, sortOption } = sentenceSearchParameters
 
-  const sentences = filterSentences(getAllSentences(nlpResult), filterText, filterVariant, filterCaseSensitive)
+  let sentences = filterSentences(getAllSentences(nlpResult), filterText, filterVariant, filterCaseSensitive)
+  sentences = sortSentences(sentences, sortOption)
 
   const updateSelectedIndex = (index: number) => {
     const newParams = { ...sentenceSearchParameters, selectedSentence: index }
@@ -53,11 +55,9 @@ function SentenceSegmentationPage() {
 }
 
   const changeSortOption = (sortOption: number) => {
-    const filteredSentences = sortSentences(sentenceSearchParameters.filteredSentences, sortOption)
     const newParams = {
       ...sentenceSearchParameters,
       selectedSentence: 0,
-      filteredSentences: filteredSentences,
       sortOption
     }
     updateSentenceSearchParameters(newParams)
@@ -141,6 +141,14 @@ function SentenceSegmentationPage() {
             id={"form-radio-de"}
             className={"app-radiobutton"}
             type={"radio"}
+            checked={sentenceSearchParameters.sortOption === SENTENCE_SORT_LENGTH}
+            label={applicationStrings.label_sortoption_length[language]}
+            onChange={() => changeSortOption(SENTENCE_SORT_LENGTH)}
+          />
+          <Form.Check
+            id={"form-radio-de"}
+            className={"app-radiobutton"}
+            type={"radio"}
             checked={sentenceSearchParameters.sortOption === SENTENCE_SORT_RANDOM}
             label={applicationStrings.label_sortoption_random[language]}
             onChange={() => changeSortOption(SENTENCE_SORT_RANDOM)}
@@ -158,13 +166,23 @@ function SentenceSegmentationPage() {
     );
   };
 
+  const currentSentenceObj = sentences[currentSentenceIndex];
   let resultLabel = applicationStrings.label_sentencesearch_result[language];
   resultLabel = resultLabel.replaceAll("#1", `${currentSentenceIndex + 1}`)
   resultLabel = resultLabel.replaceAll("#2", `${sentences.length}`)
 
+  let resultLabel2 = currentSentenceObj.words.length > 1
+    ? applicationStrings.label_sentence_length[language]
+    : applicationStrings.label_sentence_length_1w[language] 
+  resultLabel2 = resultLabel2.replaceAll("#1", currentSentenceObj.words.length)
+  resultLabel2 = resultLabel2.replaceAll("#2", currentSentenceObj.sentence.length)
+
   const renderInfoBar = () => {
     return <div className="d-flex flex-row justify-content-between infobar w-100">
-      <div>{resultLabel}</div>
+      <div className="text-start mb-2">
+        <div>{resultLabel}</div>
+        <div>{resultLabel2}</div>
+      </div>
       <div>
         <button className="btn btn-primary"
           disabled={currentSentenceIndex === 0}
@@ -182,7 +200,7 @@ function SentenceSegmentationPage() {
           disabled={sentences.length <= 1}
           onClick={() => setShowPageModal(true)}
           style={{ marginRight: "2ch" }}>
-          <Dot />
+          <Bullseye />
         </button>
         <button className="btn btn-primary"
           disabled={currentSentenceIndex === sentences.length - 1}
@@ -201,8 +219,10 @@ function SentenceSegmentationPage() {
 
   return <div className="d-flex flex-column sentence-page justify-content-center">
     <ToastContainer />
-    {renderFilterForm()}
-    {renderSortForm()}
+    <div className="d-flex flex-column justify-content-start filter-card">
+      {renderFilterForm()}
+      {renderSortForm()}
+    </div>
     {sentences.length > 0 ?
       <>{renderSentenceCard()}
       {renderInfoBar()}
