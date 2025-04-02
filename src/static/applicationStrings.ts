@@ -43,6 +43,14 @@ export const applicationStrings: any = {
         "de": "Wörter",
         "en": "Words"
     },
+    label_cooccurrences_left: {
+        "de": "Links",
+        "en": "Left"
+    },
+    label_cooccurrences_right: {
+        "de": "Rechts",
+        "en": "Rights"
+    },
     label_filter_contains: {
         "de": "Enthält",
         "en": "Contains"
@@ -138,6 +146,10 @@ export const applicationStrings: any = {
     menu_tools: {
         "de": "Tools",
         "en": "Tools"
+    },
+    menuitem_analysis_cooccurrences: {
+        "de": "Kookkurrenzen",
+        "en": "Cooccurrences"
     },
     menuitem_analysis_corpus_statistics: {
         "de": "Korpusstatistik",

@@ -11,6 +11,8 @@ import {
 import { tokenize } from "./segmentation/tokenization";
 
 export function analyseText(text: string, language: string): Result {
+  const start = performance.now()
+
   const textParagraphs = splitIntoParagraphs(text);
   const paragraphs: Paragraph[] = [];
   let wordCount = 0;
@@ -20,9 +22,8 @@ export function analyseText(text: string, language: string): Result {
 
   const wordMap = new Map<string, Word>();
 
-  const start = performance.now()
-
   function addWord(word: string, sentenceId: number) {
+    word = word.trim().toLocaleLowerCase()
     if (wordMap.has(word)) {
       const wordObject = wordMap.get(word);
       wordObject?.sentences.push(sentenceId)
@@ -55,7 +56,7 @@ export function analyseText(text: string, language: string): Result {
           sentence: sentence,
           sentenceType: sentenceType,
           wordCount: words.length,
-          words: words,
+          words: words.map(word => word.toLocaleLowerCase().trim()),
         };
       }),
     };

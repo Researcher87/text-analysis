@@ -1,5 +1,7 @@
+import { string } from "yargs";
 import { SENTENCE_SORT_ID, SENTENCE_SORT_LENGTH, SENTENCE_SORT_LEXICOGRAPHIC, SENTENCE_SORT_RANDOM } from "../components/tools/SentenceSegmentationPage";
 import { Paragraph, Result, Sentence, Word } from "../types/structure";
+import { LEFT_COOCCURRENCE, RIGHT_COOCCURRENCE } from "../components/analysis/CooccurrencePage";
 
 /**
  * Returns all paragraphs in the NLP result set (corpus).
@@ -122,4 +124,50 @@ export function sortSentences(sentences: Sentence[], sortOption: number, randomK
     }
 
     return result;
+}
+
+/**
+ * 
+ * @param nlpResult The NLP result set.
+ * @param inputWord The word whose co-occurrences are to be determined.
+ * @param option The cooccurrence type (left, right)
+ * @returns A map of all co-occurrences (word, frequency).
+ */
+export function getCooccurrences(nlpResult: Result, inputWord: string, option: number): Map<string, number> {
+    const cooccurrenceMap = new Map<string, number>();
+    inputWord = inputWord.toLocaleLowerCase().trim()
+
+    const allSentence = getAllSentences(nlpResult)
+
+    const wordObject = nlpResult.words.get(inputWord);
+    if(!wordObject) {
+        return cooccurrenceMap
+    }
+
+    wordObject.sentences.forEach(sentenceNumber => {
+        const sentenceObj = allSentence.find(sentence => sentence.id === sentenceNumber)
+        if(sentenceObj) {
+            const wordsInSentence = sentenceObj.words
+            for(let i=0; i < wordsInSentence.length; i++) {
+                if(wordsInSentence[i] === inputWord) {
+                    let cooccurrence = ""
+
+                    if(option === LEFT_COOCCURRENCE && i > 0) {
+                        cooccurrence = wordsInSentence[i-1];
+                    } else if(option === RIGHT_COOCCURRENCE && i < wordsInSentence.length-2) {
+                        cooccurrence = wordsInSentence[i+1];
+                    }
+
+                    if (cooccurrenceMap.has(cooccurrence)) {
+                        const count = cooccurrenceMap.get(cooccurrence) ?? 0
+                        cooccurrenceMap.set(cooccurrence, count + 1) 
+                      } else {
+                        cooccurrenceMap.set(cooccurrence, 1) 
+                      }
+                }
+            }
+        }
+    })
+
+    return cooccurrenceMap
 }

@@ -1,7 +1,6 @@
 import { createContext, useState } from "react";
-import { Result, Sentence } from "../types/structure";
+import { Result } from "../types/structure";
 import { SENTENCE_SORT_ID } from "../components/tools/SentenceSegmentationPage";
-import { Chart } from "chart.js";
 
 export const initialSentenceSearchParams: SentenceSearchProps = {
     selectedSentence: 0,
@@ -18,6 +17,11 @@ export const initialWordFrequencyParams: WordFrequencyProps = {
     sortOption: 0
 }
 
+export const initialCooccurrenceProps: CooccurrenceProps = {
+    filter: "",
+    option: 0
+}
+
 export const initialChartOptions: ChartOptionsProps = {
     wordLengthSelection: 0,
     paragraphLengthSelection: 0,
@@ -29,11 +33,13 @@ export interface ApplicationContextProviderProps {
     sentenceSearchParameters: SentenceSearchProps
     wordFrequencyParameters: WordFrequencyProps
     chartOptionParameters: ChartOptionsProps
+    cooccurrenceParameters: CooccurrenceProps
     updateNlpResult: (nlpResult: Result) => void
     updateInputText: (text: string) => void
     updateSentenceSearchParameters: (props: SentenceSearchProps) => void
     updateWordFrequencyParameters: (props: WordFrequencyProps) => void
     updateChartOptionParameters: (props: ChartOptionsProps) => void
+    updateCooccurrenceParameters: (props: CooccurrenceProps) => void
 }
 
 export interface SentenceSearchProps {
@@ -51,6 +57,11 @@ export interface WordFrequencyProps {
     sortOption: number
 }
 
+export interface CooccurrenceProps {
+    filter: string,
+    option: number
+}
+
 export interface ChartOptionsProps {
     wordLengthSelection: number,
     paragraphLengthSelection: number
@@ -62,11 +73,13 @@ export const ApplicationContext = createContext<ApplicationContextProviderProps>
     sentenceSearchParameters: initialSentenceSearchParams,
     wordFrequencyParameters: initialWordFrequencyParams,
     chartOptionParameters: initialChartOptions,
+    cooccurrenceParameters: initialCooccurrenceProps,
     updateNlpResult: () => {return null},
     updateInputText: () => {return ""},
     updateSentenceSearchParameters: () => initialSentenceSearchParams,
     updateWordFrequencyParameters: () => initialWordFrequencyParams,
-    updateChartOptionParameters: () => initialChartOptions
+    updateChartOptionParameters: () => initialChartOptions,
+    updateCooccurrenceParameters: () => initialCooccurrenceProps
 });
 
 export function ApplicationContextProvider( {children}: any): any {
@@ -78,6 +91,9 @@ export function ApplicationContextProvider( {children}: any): any {
 
     const [wordFrequencyParameters, setWordFrequencyParameters] 
         = useState<WordFrequencyProps>(initialWordFrequencyParams)
+
+    const [cooccurrenceParameters, setCooccurrenceParameters] 
+        = useState<CooccurrenceProps>(initialCooccurrenceProps)
 
     const [chartOptionParameters, setChartOptionParameters] 
         = useState<ChartOptionsProps>(initialChartOptions)
@@ -98,6 +114,10 @@ export function ApplicationContextProvider( {children}: any): any {
         setWordFrequencyParameters(wordFrequencyParameters)
     }
 
+    const updateCooccurrenceParameters = (cooccurrenceParameters: CooccurrenceProps): void => {
+        setCooccurrenceParameters(cooccurrenceParameters)
+    }
+
     const updateChartOptionParameters = (chartOptionsParameters: ChartOptionsProps): void => {
         setChartOptionParameters(chartOptionsParameters)
     }
@@ -108,11 +128,13 @@ export function ApplicationContextProvider( {children}: any): any {
         sentenceSearchParameters,
         wordFrequencyParameters,
         chartOptionParameters,
+        cooccurrenceParameters,
         updateNlpResult,
         updateInputText,
         updateSentenceSearchParameters,
         updateWordFrequencyParameters,
-        updateChartOptionParameters
+        updateChartOptionParameters,
+        updateCooccurrenceParameters
     };
 
     return (
