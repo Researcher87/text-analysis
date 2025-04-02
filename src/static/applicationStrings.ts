@@ -19,6 +19,10 @@ export const applicationStrings: any = {
         "de": "Bearbeiten",
         "en": "Edit"
     },
+    _frequency: {
+        "de": "Anzahl",
+        "en": "Frequency"
+    },
     _sample: {
         "de": "Beispiel",
         "en": "Sample"
@@ -30,6 +34,10 @@ export const applicationStrings: any = {
     _types: {
         "de": "Typen",
         "en": "Types"
+    },
+    _word: {
+        "de": "Wort",
+        "en": "Word"
     },
     label_case_sensitive: {
         "de": "G/K-Schreibung",
@@ -90,6 +98,10 @@ export const applicationStrings: any = {
     label_language_en: {
         "de": "Englisch",
         "en": "English"
+    },
+    label_search_terms: {
+        "de": "Suchbegriffe",
+        "en": "Search terms"
     },
     label_sentence_length: {
         "de": "Satzlänge: #1 Wörter (#2 Zeichen)",
@@ -171,6 +183,10 @@ export const applicationStrings: any = {
         "de": "Wortlängen",
         "en": "Word lengths"
     },
+    menuitem_analysis_word_occurrence: {
+        "de": "Auftreten von Wörtern",
+        "en": "Appearance of words"
+    },
     menuitem_tools_sentences: {
         "de": "Satzsegmentierung",
         "en": "Sentence segmentation"
@@ -246,5 +262,9 @@ export const applicationStrings: any = {
     toast_limit_exceeded: {
         "de": "Der eingegebene Text ist zu groß!",
         "en": "Text exceeds allowed limit."
+    },
+    toast_limit_exceeded_words: {
+        "de": "Die Eingabe enthält zu viele Wörter!",
+        "en": "Input contains too many words!"
     }
 }

@@ -24,7 +24,7 @@ export const initialCooccurrenceProps: CooccurrenceProps = {
 
 export const initialChartOptions: ChartOptionsProps = {
     wordLengthSelection: 0,
-    paragraphLengthSelection: 0,
+    wordOccurrenceText: "",
 }
 
 export interface ApplicationContextProviderProps {
@@ -64,7 +64,7 @@ export interface CooccurrenceProps {
 
 export interface ChartOptionsProps {
     wordLengthSelection: number,
-    paragraphLengthSelection: number
+    wordOccurrenceText: string
 }
 
 export const ApplicationContext = createContext<ApplicationContextProviderProps>({

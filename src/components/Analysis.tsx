@@ -9,6 +9,7 @@ import SentenceLengthChart from "./analysis/SentenceLengthChart";
 import ParagraphLengthChart from "./analysis/ParagraphLengthChart";
 import WordLengthChart from "./analysis/WordLengthChart";
 import CooccurrencePage from "./analysis/CooccurrencePage";
+import WordOccurrencePage from "./analysis/WordOccurrencePage";
 
 function Analysis() {
 
@@ -18,6 +19,7 @@ function Analysis() {
     const PAGE_CHART_WORD_LENGTH = 4;
     const PAGE_CHART_PARAGRAPH_LENGTH = 5;
     const PAGE_CHART_COOCCURRENCE = 6;
+    const PAGE_CHART_WORDOCCURRENCE = 7;
 
     const {language} = useContext(LanguageContext)
     const [activePage, setActivePage] = useState<number>(PAGE_CORPUS_STATISTICS);
@@ -42,6 +44,8 @@ function Analysis() {
                     return <ParagraphLengthChart/>
             case PAGE_CHART_COOCCURRENCE:
                     return <CooccurrencePage/>
+            case PAGE_CHART_WORDOCCURRENCE:
+                    return <WordOccurrencePage/>
             default:
                 return "Unknown page"
         }
@@ -56,16 +60,22 @@ function Analysis() {
                 {applicationStrings.menuitem_analysis_corpus_statistics[language]}
             </Button>
             <Button className={"btn btn-link sidebar-button"}
-                    active={activePage === PAGE_CHART_COOCCURRENCE}
-                    onClick={() => {setActivePage(PAGE_CHART_COOCCURRENCE)}}
-                    variant={'link'}>
-                {applicationStrings.menuitem_analysis_cooccurrences[language]}
-            </Button>
-            <Button className={"btn btn-link sidebar-button"}
                     active={activePage === PAGE_WORD_FREQUENCY}
                     onClick={() => {setActivePage(PAGE_WORD_FREQUENCY)}}
                     variant={'link'}>
                 {applicationStrings.menuitem_analysis_word_frequency[language]}
+            </Button>
+            <Button className={"btn btn-link sidebar-button"}
+                    active={activePage === PAGE_CHART_WORDOCCURRENCE}
+                    onClick={() => {setActivePage(PAGE_CHART_WORDOCCURRENCE)}}
+                    variant={'link'}>
+                {applicationStrings.menuitem_analysis_word_occurrence[language]}
+            </Button>
+            <Button className={"btn btn-link sidebar-button"}
+                    active={activePage === PAGE_CHART_COOCCURRENCE}
+                    onClick={() => {setActivePage(PAGE_CHART_COOCCURRENCE)}}
+                    variant={'link'}>
+                {applicationStrings.menuitem_analysis_cooccurrences[language]}
             </Button>
             <Button className={"btn btn-link sidebar-button"}
                     active={activePage === PAGE_CHART_SENTENCE_LENGTH}

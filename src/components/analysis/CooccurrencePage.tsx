@@ -47,11 +47,11 @@ function CooccurrencePage() {
     const columns = [
         {
             dataField: "word",
-            text: "N1",
+            text: applicationStrings._word[language],
             sort: true
         }, {
             dataField: "frequency",
-            text: "N2",
+            text: applicationStrings._frequency[language],
             sort: true
         }
     ];

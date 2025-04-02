@@ -41,6 +41,15 @@ function WordFrequencyTable(props: { nlpResult: Result }) {
         return words.sort((a, b) => b.sentences.length - a.sentences.length);
     }
 
+    function isValidRegex(pattern: string) {
+        try {
+            new RegExp(pattern);
+            return true; 
+        } catch (e) {
+            return false; // Invalid Regex
+        }
+    }
+
     let filteredList = [...result.words.values()]
     const filter = wordFrequencyParameters.filter
 
@@ -56,6 +65,9 @@ function WordFrequencyTable(props: { nlpResult: Result }) {
                 case FILTER_VARIANT_EQUALS:
                     return word.word === filter
                 case FILTER_VARIANT_REGEX:
+                    if(!isValidRegex(filter)) {
+                        return false;
+                    }
                     return word.word.match(filter)
                 default:
                     return true
