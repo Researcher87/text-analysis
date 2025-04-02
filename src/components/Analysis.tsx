@@ -10,6 +10,7 @@ import ParagraphLengthChart from "./analysis/ParagraphLengthChart";
 import WordLengthChart from "./analysis/WordLengthChart";
 import CooccurrencePage from "./analysis/CooccurrencePage";
 import WordOccurrencePage from "./analysis/WordOccurrencePage";
+import SentencePositionChart from "./analysis/SentencePositionChart";
 
 function Analysis() {
 
@@ -20,6 +21,7 @@ function Analysis() {
     const PAGE_CHART_PARAGRAPH_LENGTH = 5;
     const PAGE_CHART_COOCCURRENCE = 6;
     const PAGE_CHART_WORDOCCURRENCE = 7;
+    const PAGE_CHART_SENTENCE_POSITION = 8;
 
     const {language} = useContext(LanguageContext)
     const [activePage, setActivePage] = useState<number>(PAGE_CORPUS_STATISTICS);
@@ -46,6 +48,8 @@ function Analysis() {
                     return <CooccurrencePage/>
             case PAGE_CHART_WORDOCCURRENCE:
                     return <WordOccurrencePage/>
+            case PAGE_CHART_SENTENCE_POSITION:
+                    return <SentencePositionChart/>
             default:
                 return "Unknown page"
         }
@@ -94,6 +98,12 @@ function Analysis() {
                     onClick={() => {setActivePage(PAGE_CHART_PARAGRAPH_LENGTH)}}
                     variant={'link'}>
                 {applicationStrings.menuitem_analysis_paragraph_length[language]}
+            </Button>
+            <Button className={"btn btn-link sidebar-button"}
+                    active={activePage === PAGE_CHART_SENTENCE_POSITION}
+                    onClick={() => {setActivePage(PAGE_CHART_SENTENCE_POSITION)}}
+                    variant={'link'}>
+                {applicationStrings.menuitem_analysis_sentence_position[language]}
             </Button>
         </div>
         <div className="w-100">

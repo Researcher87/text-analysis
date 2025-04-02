@@ -1,4 +1,8 @@
 export const applicationStrings: any = {
+    _absolute: {
+        "de": "Absolut",
+        "en": "Absolute"
+    },
     _appearances: {
         "de": "Auftreten",
         "en": "appearances"
@@ -22,6 +26,10 @@ export const applicationStrings: any = {
     _frequency: {
         "de": "Anzahl",
         "en": "Frequency"
+    },
+    _relative: {
+        "de": "Relativ",
+        "en": "Relative"
     },
     _sample: {
         "de": "Beispiel",
@@ -99,6 +107,10 @@ export const applicationStrings: any = {
         "de": "Englisch",
         "en": "English"
     },
+    label_search_term: {
+        "de": "Suchbegriff",
+        "en": "Search term"
+    },
     label_search_terms: {
         "de": "Suchbegriffe",
         "en": "Search terms"
@@ -174,6 +186,10 @@ export const applicationStrings: any = {
     menuitem_analysis_sentence_length: {
         "de": "Satzlängen",
         "en": "Sentence lengths"
+    },
+    menuitem_analysis_sentence_position: {
+        "de": "Position im Satz",
+        "en": "Sentence position"
     },
     menuitem_analysis_word_frequency: {
         "de": "Worthäufigkeit",

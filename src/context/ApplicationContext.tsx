@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import { Result } from "../types/structure";
 import { SENTENCE_SORT_ID } from "../components/tools/SentenceSegmentationPage";
+import { SENTENCE_POSITION_ABSOLUTE } from "../components/analysis/SentencePositionChart";
 
 export const initialSentenceSearchParams: SentenceSearchProps = {
     selectedSentence: 0,
@@ -25,6 +26,8 @@ export const initialCooccurrenceProps: CooccurrenceProps = {
 export const initialChartOptions: ChartOptionsProps = {
     wordLengthSelection: 0,
     wordOccurrenceText: "",
+    sentencePositionText: "",
+    sentencePositionOption: SENTENCE_POSITION_ABSOLUTE
 }
 
 export interface ApplicationContextProviderProps {
@@ -64,7 +67,9 @@ export interface CooccurrenceProps {
 
 export interface ChartOptionsProps {
     wordLengthSelection: number,
-    wordOccurrenceText: string
+    wordOccurrenceText: string,
+    sentencePositionText: string,
+    sentencePositionOption: number
 }
 
 export const ApplicationContext = createContext<ApplicationContextProviderProps>({
