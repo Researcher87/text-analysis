@@ -5,11 +5,13 @@ import { useContext, useState } from "react";
 import { LanguageContext } from "../context/LanguageContext";
 import { ApplicationContext } from "../context/ApplicationContext";
 import WordFrequencyTable from "./analysis/WordFrequencyPage";
+import SentenceLengthChart from "./analysis/SentenceLengthChart";
 
 function Analysis() {
 
     const PAGE_CORPUS_STATISTICS = 1;
     const PAGE_WORD_FREQUENCY = 2;
+    const PAGE_CHART_SENTENCE_LENGTH = 3;
 
     const {language} = useContext(LanguageContext)
     const [activePage, setActivePage] = useState<number>(PAGE_CORPUS_STATISTICS);
@@ -26,6 +28,8 @@ function Analysis() {
                 return <CorpusStatistics nlpResult={nlpResult}/>
             case PAGE_WORD_FREQUENCY:
                     return <WordFrequencyTable nlpResult={nlpResult}/>
+            case PAGE_CHART_SENTENCE_LENGTH:
+                    return <SentenceLengthChart/>
             default:
                 return "Unknown page"
         }
@@ -44,6 +48,12 @@ function Analysis() {
                     onClick={() => {setActivePage(PAGE_WORD_FREQUENCY)}}
                     variant={'link'}>
                 {applicationStrings.menuitem_analysis_word_frequency[language]}
+            </Button>
+            <Button className={"btn btn-link sidebar-button"}
+                    active={activePage === PAGE_CHART_SENTENCE_LENGTH}
+                    onClick={() => {setActivePage(PAGE_CHART_SENTENCE_LENGTH)}}
+                    variant={'link'}>
+                {applicationStrings.menuitem_analysis_sentence_length[language]}
             </Button>
         </div>
         <div className="w-100">

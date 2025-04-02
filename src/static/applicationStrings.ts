@@ -1,4 +1,8 @@
 export const applicationStrings: any = {
+    _appearances: {
+        "de": "Auftreten",
+        "en": "appearances"
+    },
     _apply: {
         "de": "Übernehmen",
         "en": "Apply"
@@ -22,6 +26,10 @@ export const applicationStrings: any = {
     label_case_sensitive: {
         "de": "G/K-Schreibung",
         "en": "Case-sensitive"
+    },
+    label_chart_word_count: {
+        "de": "Wörter",
+        "en": "Words"
     },
     label_filter_contains: {
         "de": "Enthält",
@@ -126,6 +134,10 @@ export const applicationStrings: any = {
     menuitem_analysis_word_frequency: {
         "de": "Worthäufigkeit",
         "en": "Word frequency"
+    },
+    menuitem_analysis_sentence_length: {
+        "de": "Satzlänge",
+        "en": "Sentence length"
     },
     menuitem_tools_sentences: {
         "de": "Satzsegmentierung",

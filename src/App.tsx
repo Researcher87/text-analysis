@@ -11,7 +11,6 @@ import { Navigate, Route, Routes } from 'react-router';
 import Tools from './components/Tools';
 import { ApplicationContextProvider } from './context/ApplicationContext';
 
-
 function App() {
   return (
       <div className="App">
