@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { Result } from "../types/structure";
-import { SENTENCE_SORT_ID } from "../components/tools/SentenceSegmentationPage";
+import { SENTENCE_SORT_ID } from "../components/analysis/SentenceSegmentationPage";
 import { SENTENCE_POSITION_ABSOLUTE } from "../components/analysis/SentencePositionChart";
 
 export const initialSentenceSearchParams: SentenceSearchProps = {

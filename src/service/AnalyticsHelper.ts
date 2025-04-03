@@ -1,23 +1,31 @@
 import { string } from "yargs";
-import { SENTENCE_SORT_ID, SENTENCE_SORT_LENGTH, SENTENCE_SORT_LEXICOGRAPHIC, SENTENCE_SORT_RANDOM } from "../components/tools/SentenceSegmentationPage";
+import {
+  SENTENCE_SORT_ID,
+  SENTENCE_SORT_LENGTH,
+  SENTENCE_SORT_LEXICOGRAPHIC,
+  SENTENCE_SORT_RANDOM,
+} from "../components/analysis/SentenceSegmentationPage";
 import { Paragraph, Result, Sentence, Word } from "../types/structure";
-import { LEFT_COOCCURRENCE, RIGHT_COOCCURRENCE } from "../components/analysis/CooccurrencePage";
+import {
+  LEFT_COOCCURRENCE,
+  RIGHT_COOCCURRENCE,
+} from "../components/analysis/CooccurrencePage";
 
 /**
  * Returns all paragraphs in the NLP result set (corpus).
  * @param result The NLP result set.
  * @returns A list of all paragraph objects in the result set.
  */
- export function getAllParagraphs(result: Result): Paragraph[] {
-    const paragraphs: Paragraph[] = [];
+export function getAllParagraphs(result: Result): Paragraph[] {
+  const paragraphs: Paragraph[] = [];
 
-    result.documents.forEach(document => {
-        document.paragraphs.forEach(paragraph => {
-            paragraphs.push(paragraph)
-        })
-    })
+  result.documents.forEach((document) => {
+    document.paragraphs.forEach((paragraph) => {
+      paragraphs.push(paragraph);
+    });
+  });
 
-    return paragraphs;
+  return paragraphs;
 }
 
 /**
@@ -26,27 +34,25 @@ import { LEFT_COOCCURRENCE, RIGHT_COOCCURRENCE } from "../components/analysis/Co
  * @returns A list of all sentence objects in the result set.
  */
 export function getAllSentences(result: Result): Sentence[] {
-    const sentences: Sentence[] = [];
+  const sentences: Sentence[] = [];
 
-    result.documents.forEach(document => {
-        document.paragraphs.forEach(paragraph => {
-            paragraph.sentences.forEach(sentenceObj => sentences.push(sentenceObj))
-        })
-    })
+  result.documents.forEach((document) => {
+    document.paragraphs.forEach((paragraph) => {
+      paragraph.sentences.forEach((sentenceObj) => sentences.push(sentenceObj));
+    });
+  });
 
-    return sentences;
+  return sentences;
 }
-
 
 /**
  * Returns all word objects in the NLP result set (corpus).
  * @param result The NLP result set.
  * @returns A list of all word objects in the result set.
  */
- export function getAllWords(result: Result): Word[] {
-    return [...result.words.values()]
+export function getAllWords(result: Result): Word[] {
+  return [...result.words.values()];
 }
-
 
 /**
  * Sorts a list of sentences by a specified sort option.
@@ -55,119 +61,134 @@ export function getAllSentences(result: Result): Sentence[] {
  * @param randomKey Possibly a random key (only used for random search).
  * @returns The sorted list of sentences.
  */
-export function sortSentences(sentences: Sentence[], sortOption: number, randomKey?: number): Sentence[] {
-    switch(sortOption) {
-        case SENTENCE_SORT_ID:
-            return sentences.sort((a, b) => a.id - b.id )
-        case SENTENCE_SORT_LEXICOGRAPHIC:
-            return sentences.sort((a, b) => a.sentence.localeCompare(b.sentence))
-        case SENTENCE_SORT_LENGTH:
-                return sentences.sort((a, b) => a.sentence.length - b.sentence.length)
-        case SENTENCE_SORT_RANDOM:
-            return randomSort(sentences, randomKey ?? 1) 
-        default:
-            return sentences
-    }
+export function sortSentences(
+  sentences: Sentence[],
+  sortOption: number,
+  randomKey?: number
+): Sentence[] {
+  switch (sortOption) {
+    case SENTENCE_SORT_ID:
+      return sentences.sort((a, b) => a.id - b.id);
+    case SENTENCE_SORT_LEXICOGRAPHIC:
+      return sentences.sort((a, b) => a.sentence.localeCompare(b.sentence));
+    case SENTENCE_SORT_LENGTH:
+      return sentences.sort((a, b) => a.sentence.length - b.sentence.length);
+    case SENTENCE_SORT_RANDOM:
+      return randomSort(sentences, randomKey ?? 1);
+    default:
+      return sentences;
+  }
 }
-
 
 /**
  * Creates a randomly sorted list of sentences based on a random key, which will
  * produce the exact same result for a given (fixed) set of sentences.
- * 
- * Implementation: Two index variables of a specific (high) leap value which 
+ *
+ * Implementation: Two index variables of a specific (high) leap value which
  * consecutively run through the sentence list and move the sentences on that
  * index to the result set.
- * 
+ *
  * @param sentences A list of sentence objects.
  * @param key The random key (> 0)
  */
- export function randomSort(input: Sentence[], key: number): Sentence[] {
-    if(input.length <= 2) {
-        return input;
+export function randomSort(input: Sentence[], key: number): Sentence[] {
+  if (input.length <= 2) {
+    return input;
+  }
+
+  const sentences = [...input];
+  const result: Sentence[] = [];
+
+  let index1 = key;
+
+  while (sentences.length >= 1) {
+    // Pick first sentence using random function 1 (leap1):
+    let leapValue1 = Math.round(sentences.length / 3) + 1 + key;
+    index1 += leapValue1;
+
+    while (index1 >= sentences.length) {
+      index1 -= sentences.length;
     }
 
-    const sentences = [...input]
-    const result: Sentence[] = []
+    const sentence = sentences[index1];
+    result.push(sentence);
+    sentences.splice(index1, 1);
 
-    let index1 = key;
-
-    while(sentences.length >= 1) {
-
-        // Pick first sentence using random function 1 (leap1):
-        let leapValue1 = Math.round(sentences.length / 3) + 1 + key;
-        index1 += leapValue1
-
-        while(index1 >= sentences.length) {
-            index1 -= sentences.length;
-        }
-
-        const sentence = sentences[index1]
-        result.push(sentence)
-        sentences.splice(index1, 1)
-
-        // Sentence list could be empty here. In this case DO NOT PROCEED.
-        if(sentences.length === 0) {
-            break;
-        }
-
-        // Pick second sentence using random function 2 (leap2, based on the result of leap1):
-        let leapValue2 = Math.round(sentences.length / 2) + 1 + key;
-        let index2 = index1 + leapValue2
-        while(index2 >= sentences.length) {
-            index2 -= sentences.length;
-        }
-
-        const sentence2 = sentences[index2]
-        result.push(sentence2)
-        sentences.splice(index2, 1)
+    // Sentence list could be empty here. In this case DO NOT PROCEED.
+    if (sentences.length === 0) {
+      break;
     }
 
-    return result;
+    // Pick second sentence using random function 2 (leap2, based on the result of leap1):
+    let leapValue2 = Math.round(sentences.length / 2) + 1 + key;
+    let index2 = index1 + leapValue2;
+    while (index2 >= sentences.length) {
+      index2 -= sentences.length;
+    }
+
+    const sentence2 = sentences[index2];
+    result.push(sentence2);
+    sentences.splice(index2, 1);
+  }
+
+  return result;
 }
 
 /**
- * 
+ *
  * @param nlpResult The NLP result set.
  * @param inputWord The word whose co-occurrences are to be determined.
  * @param option The cooccurrence type (left, right)
  * @returns A map of all co-occurrences (word, frequency).
  */
-export function getCooccurrences(nlpResult: Result, inputWord: string, option: number): Map<string, number> {
-    const cooccurrenceMap = new Map<string, number>();
-    inputWord = inputWord.toLocaleLowerCase().trim()
+export function getCooccurrences(
+  nlpResult: Result,
+  inputWord: string,
+  option: number
+): Map<string, number> {
+  const cooccurrenceMap = new Map<string, number>();
+  inputWord = inputWord.toLocaleLowerCase().trim();
 
-    const allSentence = getAllSentences(nlpResult)
+  const allSentence = getAllSentences(nlpResult);
 
-    const wordObject = nlpResult.words.get(inputWord);
-    if(!wordObject) {
-        return cooccurrenceMap
-    }
+  const wordObject = nlpResult.words.get(inputWord);
+  if (!wordObject) {
+    return cooccurrenceMap;
+  }
 
-    wordObject.sentences.forEach(sentenceNumber => {
-        const sentenceObj = allSentence.find(sentence => sentence.id === sentenceNumber)
-        if(sentenceObj) {
-            const wordsInSentence = sentenceObj.words
-            for(let i=0; i < wordsInSentence.length; i++) {
-                if(wordsInSentence[i] === inputWord) {
-                    let cooccurrence = ""
+  wordObject.sentences.forEach((sentenceNumber) => {
+    const sentenceObj = allSentence.find(
+      (sentence) => sentence.id === sentenceNumber
+    );
+    if (sentenceObj) {
+      const wordsInSentence = sentenceObj.words;
+      for (let i = 0; i < wordsInSentence.length; i++) {
+        if (wordsInSentence[i] === inputWord) {
+          let cooccurrence = "";
 
-                    if(option === LEFT_COOCCURRENCE && i > 0) {
-                        cooccurrence = wordsInSentence[i-1];
-                    } else if(option === RIGHT_COOCCURRENCE && i < wordsInSentence.length-2) {
-                        cooccurrence = wordsInSentence[i+1];
-                    }
+          if (option === LEFT_COOCCURRENCE && i > 0) {
+            cooccurrence = wordsInSentence[i - 1];
+          } else if (
+            option === RIGHT_COOCCURRENCE &&
+            i < wordsInSentence.length - 2
+          ) {
+            cooccurrence = wordsInSentence[i + 1];
+          }
 
-                    if (cooccurrenceMap.has(cooccurrence)) {
-                        const count = cooccurrenceMap.get(cooccurrence) ?? 0
-                        cooccurrenceMap.set(cooccurrence, count + 1) 
-                      } else {
-                        cooccurrenceMap.set(cooccurrence, 1) 
-                      }
-                }
+          // Cooccurrence ist scheinbar manchmal ""
+
+          if (cooccurrence !== "") {
+            if (cooccurrenceMap.has(cooccurrence)) {
+              const count = cooccurrenceMap.get(cooccurrence) ?? 0;
+              cooccurrenceMap.set(cooccurrence, count + 1);
+            } else {
+              cooccurrenceMap.set(cooccurrence, 1);
             }
+          }
         }
-    })
+      }
+    }
+  });
 
-    return cooccurrenceMap
+  return cooccurrenceMap;
 }

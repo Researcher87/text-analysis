@@ -8,7 +8,7 @@ import Home from './components/Home';
 import Import from './components/Import';
 import Analysis from './components/Analysis';
 import { Navigate, Route, Routes } from 'react-router';
-import Tools from './components/Tools';
+import Contact from './components/Contact';
 import { ApplicationContextProvider } from './context/ApplicationContext';
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
                 <Route path={PATH_HOME} Component={Home}/>
                 <Route path={PATH_IMPORT} Component={Import}/>
                 <Route path={PATH_ANALYSIS} Component={Analysis}/>
-                <Route path={PATH_TOOLS} Component={Tools}/>
+                <Route path={PATH_TOOLS} Component={Contact}/>
               </Routes>
             </ApplicationContextProvider>
           </LanguageProvider>

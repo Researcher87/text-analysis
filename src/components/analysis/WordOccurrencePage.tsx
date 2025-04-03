@@ -8,6 +8,7 @@ import { getAllSentences } from "../../service/AnalyticsHelper";
 import { ALL_COLORS } from "../../constants/ChartConfig";
 import { ToastContainer, toast } from 'react-toastify';
 import React from "react";
+import { data } from "react-router";
 
 const MAX_ALLOWED_WORDS = 10
 

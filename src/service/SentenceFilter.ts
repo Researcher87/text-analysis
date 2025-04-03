@@ -1,4 +1,4 @@
-import { FILTER_VARIANT_FREE, FILTER_VARIANT_WORDS } from "../components/tools/SentenceSegmentationPage";
+import { FILTER_VARIANT_FREE, FILTER_VARIANT_WORDS } from "../components/analysis/SentenceSegmentationPage";
 import { Sentence } from "../types/structure";
 
 export function filterSentences(sentences: Sentence[], filterText: string, filterVariant: number,

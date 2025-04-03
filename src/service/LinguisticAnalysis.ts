@@ -56,7 +56,7 @@ export function analyseText(text: string, language: string): Result {
           sentence: sentence,
           sentenceType: sentenceType,
           wordCount: words.length,
-          words: words.map(word => word.toLocaleLowerCase().trim()),
+          words: words.map(word => word.trim()),
         };
       }),
     };

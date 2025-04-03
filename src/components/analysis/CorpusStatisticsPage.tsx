@@ -4,15 +4,20 @@ import { getAllParagraphs, getAllSentences } from "../../service/AnalyticsHelper
 import { applicationStrings } from "../../static/applicationStrings";
 import { useContext } from "react";
 import { LanguageContext } from "../../context/LanguageContext";
+import { ApplicationContext } from "../../context/ApplicationContext";
 
-function CorpusStatistics(props: {nlpResult: Result}) {
-    const result = props.nlpResult
+function CorpusStatistics() {
 
     const { language } = useContext(LanguageContext)
+    const { nlpResult } = useContext(ApplicationContext)
 
-    const paragraphs = getAllParagraphs(result).length
-    const sentences = getAllSentences(result).length
-    const wordCount = result.wordCount
+    if(!nlpResult) {
+        return <div className="no-result">{applicationStrings.message_no_result[language]}</div>
+    }
+
+    const paragraphs = getAllParagraphs(nlpResult).length
+    const sentences = getAllSentences(nlpResult).length
+    const wordCount = nlpResult.wordCount
 
     const data = [
         {
@@ -41,7 +46,7 @@ function CorpusStatistics(props: {nlpResult: Result}) {
         },
         {
             key: applicationStrings.table_key_unique_words[language], 
-            value: result.words.size
+            value: nlpResult.words.size
         },
     ];
 

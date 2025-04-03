@@ -11,6 +11,8 @@ import WordLengthChart from "./analysis/WordLengthChart";
 import CooccurrencePage from "./analysis/CooccurrencePage";
 import WordOccurrencePage from "./analysis/WordOccurrencePage";
 import SentencePositionChart from "./analysis/SentencePositionChart";
+import TechnicalInformationPage from "./analysis/TechnicalInformationPage";
+import SentenceSegmentationPage from "./analysis/SentenceSegmentationPage";
 
 function Analysis() {
 
@@ -22,6 +24,8 @@ function Analysis() {
     const PAGE_CHART_COOCCURRENCE = 6;
     const PAGE_CHART_WORDOCCURRENCE = 7;
     const PAGE_CHART_SENTENCE_POSITION = 8;
+    const PAGE_SENTENCE_SEGMENATION = 9;
+    const PAGE_TECHNICAL = 10;
 
     const {language} = useContext(LanguageContext)
     const [activePage, setActivePage] = useState<number>(PAGE_CORPUS_STATISTICS);
@@ -35,9 +39,9 @@ function Analysis() {
     const renderPage = () => {
         switch(activePage) {
             case PAGE_CORPUS_STATISTICS:
-                return <CorpusStatistics nlpResult={nlpResult}/>
+                return <CorpusStatistics />
             case PAGE_WORD_FREQUENCY:
-                    return <WordFrequencyTable nlpResult={nlpResult}/>
+                    return <WordFrequencyTable/>
             case PAGE_CHART_SENTENCE_LENGTH:
                     return <SentenceLengthChart/>
             case PAGE_CHART_WORD_LENGTH:
@@ -50,6 +54,10 @@ function Analysis() {
                     return <WordOccurrencePage/>
             case PAGE_CHART_SENTENCE_POSITION:
                     return <SentencePositionChart/>
+            case PAGE_SENTENCE_SEGMENATION:
+                    return <SentenceSegmentationPage/>
+            case PAGE_TECHNICAL:
+                    return <TechnicalInformationPage/>
             default:
                 return "Unknown page"
         }
@@ -68,6 +76,12 @@ function Analysis() {
                     onClick={() => {setActivePage(PAGE_WORD_FREQUENCY)}}
                     variant={'link'}>
                 {applicationStrings.menuitem_analysis_word_frequency[language]}
+            </Button>
+            <Button className={"btn btn-link sidebar-button"}
+                    active={activePage === PAGE_SENTENCE_SEGMENATION}
+                    onClick={() => {setActivePage(PAGE_SENTENCE_SEGMENATION)}}
+                    variant={'link'}>
+                {applicationStrings.menuitem_tools_sentences[language]}
             </Button>
             <Button className={"btn btn-link sidebar-button"}
                     active={activePage === PAGE_CHART_WORDOCCURRENCE}
@@ -104,6 +118,12 @@ function Analysis() {
                     onClick={() => {setActivePage(PAGE_CHART_SENTENCE_POSITION)}}
                     variant={'link'}>
                 {applicationStrings.menuitem_analysis_sentence_position[language]}
+            </Button>
+            <Button className={"btn btn-link sidebar-button"}
+                    active={activePage === PAGE_TECHNICAL}
+                    onClick={() => {setActivePage(PAGE_TECHNICAL)}}
+                    variant={'link'}>
+                {applicationStrings.menuitem_tools_technical[language]}
             </Button>
         </div>
         <div className="w-100">

@@ -24,7 +24,7 @@ function SentenceSegmentationPage() {
 
   const [showPageModal, setShowPageModal] = useState(false)
 
-  if(!nlpResult) {
+  if (!nlpResult) {
     return <div className="no-result">{applicationStrings.message_no_result[language]}</div>
   }
 
@@ -39,7 +39,7 @@ function SentenceSegmentationPage() {
     }
   }
 
-  const {filterText, filterVariant, filterCaseSensitive, sortOption } = sentenceSearchParameters
+  const { filterText, filterVariant, filterCaseSensitive, sortOption } = sentenceSearchParameters
 
   let sentences = filterSentences(getAllSentences(nlpResult), filterText, filterVariant, filterCaseSensitive)
   sentences = sortSentences(sentences, sortOption)
@@ -52,7 +52,7 @@ function SentenceSegmentationPage() {
   const updateFilterText = (filterText: string) => {
     const newParams = { ...sentenceSearchParameters, filterText }
     updateSentenceSearchParameters(newParams)
-}
+  }
 
   const changeSortOption = (sortOption: number) => {
     const newParams = {
@@ -72,7 +72,7 @@ function SentenceSegmentationPage() {
   const changeFilterVariant = (filterVariant: number) => {
     const newParams = { ...sentenceSearchParameters, filterVariant }
     updateSentenceSearchParameters(newParams)
-}
+  }
 
   const currentSentenceIndex = sentenceSearchParameters.selectedSentence
   const currentSentence: string = sentences[currentSentenceIndex] ? sentences[currentSentenceIndex].sentence : ""
@@ -104,13 +104,13 @@ function SentenceSegmentationPage() {
         </div>
       </Form>
       <Form.Check
-            id={"form-radio-case"}
-            className={"app-radiobutton"}
-            type={"checkbox"}
-            label={applicationStrings.label_case_sensitive[language]}
-            checked={sentenceSearchParameters.filterCaseSensitive === true}
-            onChange={() => changeCaseSensitiveOption()}
-          />
+        id={"form-radio-case"}
+        className={"app-radiobutton"}
+        type={"checkbox"}
+        label={applicationStrings.label_case_sensitive[language]}
+        checked={sentenceSearchParameters.filterCaseSensitive === true}
+        onChange={() => changeCaseSensitiveOption()}
+      />
     </div>
   }
 
@@ -171,11 +171,14 @@ function SentenceSegmentationPage() {
   resultLabel = resultLabel.replaceAll("#1", `${currentSentenceIndex + 1}`)
   resultLabel = resultLabel.replaceAll("#2", `${sentences.length}`)
 
-  let resultLabel2 = currentSentenceObj.words.length > 1
-    ? applicationStrings.label_sentence_length[language]
-    : applicationStrings.label_sentence_length_1w[language] 
-  resultLabel2 = resultLabel2.replaceAll("#1", currentSentenceObj.words.length)
-  resultLabel2 = resultLabel2.replaceAll("#2", currentSentenceObj.sentence.length)
+  let resultLabel2 = ""
+  if (currentSentenceObj) {
+    resultLabel2 = currentSentenceObj.words.length > 1
+      ? applicationStrings.label_sentence_length[language]
+      : applicationStrings.label_sentence_length_1w[language]
+    resultLabel2 = resultLabel2.replaceAll("#1", String(currentSentenceObj.words.length))
+    resultLabel2 = resultLabel2.replaceAll("#2", String(currentSentenceObj.sentence.length))
+  }
 
   const renderInfoBar = () => {
     return <div className="d-flex flex-row justify-content-between infobar w-100">
@@ -225,17 +228,17 @@ function SentenceSegmentationPage() {
     </div>
     {sentences.length > 0 ?
       <>{renderSentenceCard()}
-      {renderInfoBar()}
-      {showPageModal &&
-        <InputModal title={applicationStrings.modal_sentence_page[language]}
-          show={showPageModal}
-          onCancel={() => setShowPageModal(false)}
-          onConfirm={setSelectedPage} />
-      }</>
+        {renderInfoBar()}
+        {showPageModal &&
+          <InputModal title={applicationStrings.modal_sentence_page[language]}
+            show={showPageModal}
+            onCancel={() => setShowPageModal(false)}
+            onConfirm={setSelectedPage} />
+        }</>
       :
       <div className="no-result">{applicationStrings.message_no_result[language]}</div>
     }
-  
+
   </div>
 
 }

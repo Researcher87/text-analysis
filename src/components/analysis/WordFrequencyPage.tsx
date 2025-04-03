@@ -21,11 +21,15 @@ interface TableData {
     firstAppearance: number
 }
 
-function WordFrequencyTable(props: { nlpResult: Result }) {
-    const result = props.nlpResult
+function WordFrequencyTable() {
 
     const { language } = useContext(LanguageContext)
     const { wordFrequencyParameters, updateWordFrequencyParameters } = useContext(ApplicationContext)
+    const { nlpResult } = useContext(ApplicationContext)
+
+    if (!nlpResult) {
+        return <div className="no-result">{applicationStrings.message_no_result[language]}</div>
+    }
 
     const updateFilter = (filter: string) => {
         const newParams = { ...wordFrequencyParameters, filter }
@@ -50,7 +54,7 @@ function WordFrequencyTable(props: { nlpResult: Result }) {
         }
     }
 
-    let filteredList = [...result.words.values()]
+    let filteredList = [...nlpResult.words.values()]
     const filter = wordFrequencyParameters.filter
 
     if (filter) {

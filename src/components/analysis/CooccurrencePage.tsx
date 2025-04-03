@@ -6,6 +6,7 @@ import { Form } from "react-bootstrap"
 import BootstrapTable from "react-bootstrap-table-next"
 import paginationFactory from "react-bootstrap-table2-paginator"
 import { getCooccurrences } from "../../service/AnalyticsHelper"
+import { tab } from "@testing-library/user-event/dist/tab"
 
 interface TableData {
     word: string
