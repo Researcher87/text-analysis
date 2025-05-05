@@ -73,4 +73,19 @@ describe('Tests basic forms of sentence segmentation (general, not language-spec
     expect(result[4]).toBe("Er war sauer.")
   });
 
+  test('segmentation with complex quote', () => {
+    const satz = `"Worauf wartest du? Es ist grün."`
+    const result = segmentSentence(satz);
+
+    expect(result.length).toBe(2)
+    expect(result[0]).toBe("\"Worauf wartest du?")
+    expect(result[1]).toBe("Es ist grün.\"")
+  });
+
+  const satz1 = `»Die eine Treppe ins Dachgeschoss ist ja okay. Aber jeden Tag immer bis ganz hier hoch zu stiefeln …«`
+  const result1 = segmentSentence(satz1);
+  expect(result1.length).toBe(2)
+  expect(result1[0]).toBe("»Die eine Treppe ins Dachgeschoss ist ja okay.")
+  expect(result1[1]).toBe("Aber jeden Tag immer bis ganz hier hoch zu stiefeln …«")
+
 })

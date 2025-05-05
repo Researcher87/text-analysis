@@ -1,5 +1,5 @@
 import { Wordpress } from "react-bootstrap-icons";
-import { FILTER_VARIANT_FREE, FILTER_VARIANT_WORDS } from "../src/components/tools/SentenceSegmentationPage";
+import { FILTER_VARIANT_FREE, FILTER_VARIANT_WORDS } from "../src/components/analysis/SentenceSegmentationPage";
 import { tokenize } from "../src/service/segmentation/tokenization";
 import { filterSentences } from "../src/service/SentenceFilter";
 import { Sentence } from "../src/types/structure";

@@ -21,7 +21,7 @@ export function segmentSentence(inputText: string): string[] {
         const nextNextCharacter = text.substring(cursor+2, cursor+3);
         const nextNextNextCharacter = text.substring(cursor+2, cursor+4);
 
-        // Found potential end of sentence (. / ? / !)
+        // Found potential end of sentence (. / ? / ! / …)
         if(isSentenceMark(currentCharacter)) {
 
             // Sentence mark followed by space and upper case letter. Sample: Es ist spät. Ich gehe nach Hause.
@@ -93,6 +93,8 @@ export function segmentSentence(inputText: string): string[] {
         if(endsWithSentenceMark(remainder)) {
             sentences.push(text.trim());
         }
+    } else {  // Sentence fragment won't be added to the list (ignored in subsequent process)
+        console.warn("Remaining sentence fragment was discarded:", remainder)
     }
 
     // If no sentence was detected, the whole input will be considered to be one sentence (e.g. "Kapitel 1")
@@ -126,7 +128,7 @@ export function getSentenceType(sentence: string): number {
             const lastCharacter = sentence.substring(sentence.length-1, sentence.length);
             if(isQuoteCharacter(lastCharacter)) {
                 const previousCharacter = sentence.substring(sentence.length-2, sentence.length-1);
-                if(previousCharacter === ".") {
+                if(previousCharacter === "." || previousCharacter === "…") {
                     sentenceType = SENTENCE_TYPE_QUOTE_DECLARATIVE;
                 } else if(previousCharacter === "?") {
                     sentenceType = SENTENCE_TYPE_QUOTE_QUESTION;
@@ -141,7 +143,7 @@ export function getSentenceType(sentence: string): number {
 }
 
 function endsWithSentenceMark(text: string): boolean {
-    return text.endsWith(".") || text.endsWith("!") || text.endsWith("?")
+    return text.endsWith(".") || text.endsWith("!") || text.endsWith("?") || text.endsWith("…")
 }
 
 function isUppercase(character: string): boolean {
@@ -149,7 +151,7 @@ function isUppercase(character: string): boolean {
 }
 
 function isSentenceMark(character: string): boolean {
-    return character === "." || character === "!" || character === "?"
+    return character === "." || character === "!" || character === "?" || character === "…"
 }
 
 function isQuoteCharacter(character: string): boolean {
