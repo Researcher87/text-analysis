@@ -163,7 +163,7 @@ export function getCooccurrences(
     if (sentenceObj) {
       const wordsInSentence = sentenceObj.words;
       for (let i = 0; i < wordsInSentence.length; i++) {
-        if (wordsInSentence[i] === inputWord) {
+        if (wordsInSentence[i].toLocaleLowerCase() === inputWord) {
           let cooccurrence = "";
 
           if (option === LEFT_COOCCURRENCE && i > 0) {
@@ -175,7 +175,7 @@ export function getCooccurrences(
             cooccurrence = wordsInSentence[i + 1];
           }
 
-          // Cooccurrence ist scheinbar manchmal ""
+          // Cooccurrence could sometimes be ""
 
           if (cooccurrence !== "") {
             if (cooccurrenceMap.has(cooccurrence)) {

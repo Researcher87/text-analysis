@@ -45,7 +45,7 @@ function SentencePositionChart() {
     
         allSentences.forEach(sentence => {
             for(let i=0; i < sentence.words.length && i < maxLength; i++) {
-                if(sentence.words[i] === chartOptionParameters.sentencePositionText) {
+                if(sentence.words[i].toLocaleLowerCase() === chartOptionParameters.sentencePositionText) {
                     values[i - 1] += 1
                 }
             }
@@ -58,7 +58,7 @@ function SentencePositionChart() {
 
         allSentences.forEach(sentence => {
             for(let i=0; i < sentence.words.length && i < maxLength; i++) {
-                if(sentence.words[i] === chartOptionParameters.sentencePositionText) {
+                if(sentence.words[i].toLocaleLowerCase() === chartOptionParameters.sentencePositionText) {
                     const relPosition = Math.round((i / (sentence.words.length-1)) * 10)
                     values[relPosition] += 1
                 }
