@@ -1,0 +1,30 @@
+Date : 2025-03-30 20:38:41
+Directory : /Users/patrick/projects/individual/text-analysis/src/components
+Total : 5 files,  166 codes, 4 comments, 31 blanks, all 201 lines
+
+Languages
++------------------+------------+------------+------------+------------+------------+
+| language         | files      | code       | comment    | blank      | total      |
++------------------+------------+------------+------------+------------+------------+
+| TypeScript React |          4 |        146 |          0 |         25 |        171 |
+| SCSS             |          1 |         20 |          4 |          6 |         30 |
++------------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                         | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                            |          5 |        166 |          4 |         31 |        201 |
++------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| filename                                                                     | language         | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| /Users/patrick/projects/individual/text-analysis/src/components/Analysis.tsx | TypeScript React |          6 |          0 |          4 |         10 |
+| /Users/patrick/projects/individual/text-analysis/src/components/Header.scss  | SCSS             |         20 |          4 |          6 |         30 |
+| /Users/patrick/projects/individual/text-analysis/src/components/Header.tsx   | TypeScript React |         82 |          0 |          7 |         89 |
+| /Users/patrick/projects/individual/text-analysis/src/components/Home.tsx     | TypeScript React |          6 |          0 |          4 |         10 |
+| /Users/patrick/projects/individual/text-analysis/src/components/Import.tsx   | TypeScript React |         52 |          0 |         10 |         62 |
+| Total                                                                        |                  |        166 |          4 |         31 |        201 |
++------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+

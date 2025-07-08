@@ -33,6 +33,14 @@ $sidebar-font-color-selected: yellow;
   width: 100%;
 }
 
+// Heading in a text or between charts
+.heading {
+  padding-top: 1.5vh;
+  padding-bottom: 1vh;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
 .no-result {
   margin: 5vh;
 }

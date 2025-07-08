@@ -31,13 +31,19 @@ export interface Word {
 
 export interface MetaInformation {
     processingTime: number,
+    discardedSentences: string[]
+}
+
+export interface SentenceSegmentationResult {
+    sentences: string[],
+    discardedSentences: string[]
 }
 
 export const SENTENCE_TYPE_UNKNOWN = 0
 export const SENTENCE_TYPE_DECLARATIVE = 1
 export const SENTENCE_TYPE_QUESTION = 2
-export const SENTENCE_TYPE_EXCLAMATORY = 3
+export const SENTENCE_TYPE_IMPERATIVE = 3
 export const SENTENCE_TYPE_QUOTE_DECLARATIVE = 10
 export const SENTENCE_TYPE_QUOTE_QUESTION = 11
-export const SENTENCE_TYPE_QUOTE_EXCLAMATORY = 12
+export const SENTENCE_TYPE_QUOTE_IMPERATIVE = 12
 export const SENTENCE_TYPE_QUOTE_UNKNOWN = 13

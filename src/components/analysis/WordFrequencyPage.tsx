@@ -186,7 +186,8 @@ function WordFrequencyTable() {
             keyField='id'
             data={tableData}
             columns={columns}
-            pagination={paginationFactory({ sizePerPage: 10, sizePerPageList: [5, 10, 15] })}
+            pagination={paginationFactory({sizePerPage: 10, sizePerPageList: [5, 10, 15] })}
+            pagination-align="top"
         />
     </div>
 

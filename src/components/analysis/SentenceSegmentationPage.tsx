@@ -50,7 +50,10 @@ function SentenceSegmentationPage() {
   }
 
   const updateFilterText = (filterText: string) => {
-    const newParams = { ...sentenceSearchParameters, filterText }
+    const newParams = { ...sentenceSearchParameters, 
+      filterText,
+      selectedSentence: 0 
+    }
     updateSentenceSearchParameters(newParams)
   }
 
@@ -65,12 +68,18 @@ function SentenceSegmentationPage() {
 
   const changeCaseSensitiveOption = () => {
     const currentSetting = sentenceSearchParameters.filterCaseSensitive
-    const newParams = { ...sentenceSearchParameters, filterCaseSensitive: !currentSetting }
+    const newParams = { ...sentenceSearchParameters, 
+      filterCaseSensitive: !currentSetting,
+      selectedSentence: 0 
+    }
     updateSentenceSearchParameters(newParams)
   }
 
   const changeFilterVariant = (filterVariant: number) => {
-    const newParams = { ...sentenceSearchParameters, filterVariant }
+    const newParams = { ...sentenceSearchParameters, 
+      filterVariant,
+      selectedSentence: 0
+     }
     updateSentenceSearchParameters(newParams)
   }
 

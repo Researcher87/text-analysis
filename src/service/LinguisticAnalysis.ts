@@ -2,6 +2,7 @@ import {
   Document,
   Paragraph,
   Result,
+  SentenceSegmentationResult,
   Word,
 } from "../types/structure";
 import {
@@ -38,12 +39,16 @@ export function analyseText(text: string, language: string): Result {
     }
   }
 
+  let discardedSentences: string[] = []
+
   textParagraphs.forEach((paragraph) => {
-    const textSentences: string[] = segmentSentence(paragraph);
+    const segmentationResult: SentenceSegmentationResult = segmentSentence(paragraph, language);
+    const resultSentences = segmentationResult.sentences
+    discardedSentences = discardedSentences.concat(segmentationResult.discardedSentences)
 
     const paragraphObj: Paragraph = {
       id: paragraphCounter,
-      sentences: textSentences.map((sentence) => {
+      sentences: resultSentences.map((sentence) => {
         const sentenceType = getSentenceType(sentence);
         sentenceCounter += 1;
 
@@ -80,6 +85,7 @@ export function analyseText(text: string, language: string): Result {
     words: wordMap,
     metainfo: {
       processingTime: end - start,
+      discardedSentences
     },
   };
 

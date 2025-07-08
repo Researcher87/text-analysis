@@ -1,0 +1,47 @@
+Date : 2025-03-30 20:38:41
+Directory : /Users/patrick/projects/individual/text-analysis/src/components
+Total : 13 files,  -97 codes, -9 comments, -20 blanks, all -126 lines
+
+Languages
++------------------+------------+------------+------------+------------+------------+
+| language         | files      | code       | comment    | blank      | total      |
++------------------+------------+------------+------------+------------+------------+
+| TypeScript React |          4 |         -8 |          0 |         -6 |        -14 |
+| SCSS             |          1 |        -10 |         -2 |         -3 |        -15 |
+| CSS              |          1 |        -12 |          0 |         -2 |        -14 |
+| TypeScript       |          3 |        -31 |          0 |          0 |        -31 |
+| JavaScript       |          4 |        -36 |         -7 |         -9 |        -52 |
++------------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                              | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                 |         13 |        -97 |         -9 |        -20 |       -126 |
+| . (Files)                                                                         |          2 |         45 |          0 |          6 |         51 |
+| ..                                                                                |         11 |       -142 |         -9 |        -26 |       -177 |
+| .. (Files)                                                                        |          7 |        -83 |         -9 |        -19 |       -111 |
+| ../constants                                                                      |          2 |         -5 |          0 |          0 |         -5 |
+| ../context                                                                        |          1 |        -28 |          0 |         -7 |        -35 |
+| ../static                                                                         |          1 |        -26 |          0 |          0 |        -26 |
++-----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| filename                                                                          | language         | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| /Users/patrick/projects/individual/text-analysis/src/App.scss                     | SCSS             |        -10 |         -2 |         -3 |        -15 |
+| /Users/patrick/projects/individual/text-analysis/src/App.test.js                  | JavaScript       |         -7 |          0 |         -2 |         -9 |
+| /Users/patrick/projects/individual/text-analysis/src/App.tsx                      | TypeScript React |        -25 |          0 |         -5 |        -30 |
+| /Users/patrick/projects/individual/text-analysis/src/components/Header.tsx        | TypeScript React |         -1 |          0 |          0 |         -1 |
+| /Users/patrick/projects/individual/text-analysis/src/components/Import.tsx        | TypeScript React |         46 |          0 |          6 |         52 |
+| /Users/patrick/projects/individual/text-analysis/src/constants/Language.ts        | TypeScript       |         -2 |          0 |          0 |         -2 |
+| /Users/patrick/projects/individual/text-analysis/src/constants/Paths.ts           | TypeScript       |         -3 |          0 |          0 |         -3 |
+| /Users/patrick/projects/individual/text-analysis/src/context/LanguageContext.tsx  | TypeScript React |        -28 |          0 |         -7 |        -35 |
+| /Users/patrick/projects/individual/text-analysis/src/index.css                    | CSS              |        -12 |          0 |         -2 |        -14 |
+| /Users/patrick/projects/individual/text-analysis/src/index.js                     | JavaScript       |        -16 |         -3 |         -4 |        -23 |
+| /Users/patrick/projects/individual/text-analysis/src/reportWebVitals.js           | JavaScript       |        -12 |          0 |         -2 |        -14 |
+| /Users/patrick/projects/individual/text-analysis/src/setupTests.js                | JavaScript       |         -1 |         -4 |         -1 |         -6 |
+| /Users/patrick/projects/individual/text-analysis/src/static/applicationStrings.ts | TypeScript       |        -26 |          0 |          0 |        -26 |
+| Total                                                                             |                  |        -97 |         -9 |        -20 |       -126 |
++-----------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+

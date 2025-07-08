@@ -1,17 +1,28 @@
-import { SENTENCE_TYPE_DECLARATIVE, SENTENCE_TYPE_EXCLAMATORY, SENTENCE_TYPE_QUESTION, SENTENCE_TYPE_QUOTE_DECLARATIVE, SENTENCE_TYPE_QUOTE_EXCLAMATORY, SENTENCE_TYPE_QUOTE_QUESTION, SENTENCE_TYPE_UNKNOWN } from "../../types/structure";
+import { LANGUAGE_DE } from "../../constants/Language";
+import { SENTENCE_TYPE_DECLARATIVE, SENTENCE_TYPE_IMPERATIVE, SENTENCE_TYPE_QUESTION, SENTENCE_TYPE_QUOTE_DECLARATIVE, SENTENCE_TYPE_QUOTE_IMPERATIVE, SENTENCE_TYPE_QUOTE_QUESTION, SENTENCE_TYPE_UNKNOWN, SentenceSegmentationResult } from "../../types/structure";
 
-const generalExceptions = ["Dr", "Mr", "Mrs", "Ms", "Prof"];
-const germanExceptions = ["Fr", "Gr", "Hr", "Kl"]
-const allExceptions = [...new Set([...generalExceptions, ...germanExceptions])];
+const generalExceptions = [
+    "Mr", "Mrs", "Ms", 
+    "Prof", "Dr", "rer", "nat", "habil"
+];
+const germanExceptions = [
+    "Fr", "Gr", "Hr", "Kl",
+    "Feb", "Apr", "Aug", "Sep", "Okt", "Nov", "Dez",
+    "Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"
+]
+const englishExceptions = ["dep"]
 
 /**
  * Splits a text into its sentence objects.
  * @param text A text of an arbitrary length.
- * @returns A list of sentences.
+ * @param language The language of the text (used for language-specfic segmentation).
+ * @returns A result object containing the extracted and discarded (failed) sentences.
  */
-export function segmentSentence(inputText: string): string[] {
+export function segmentSentence(inputText: string, language: string): SentenceSegmentationResult {
     let text = inputText.trim();
+
     const sentences: string[] = [];
+    let discardedSentences: string[] = [];
 
     let cursor = 0;
 
@@ -47,8 +58,12 @@ export function segmentSentence(inputText: string): string[] {
 
                     // Do not split after certain words like Dr., Prof. and the like
                     let exceptionWord = false
-                    allExceptions.forEach(exception => {
-                        if(previousPart.endsWith(" " + exception)) {
+                    getExceptionList(language).forEach(exception => {
+
+                        if(previousPart.endsWith(" " + exception)) { // Example: Wir fragten Prof. Queck um Rat.
+                            exceptionWord = true;
+                            return;
+                        } else if(previousPart === exception) { // Example: Prof. Queck erklärt die Welt.
                             exceptionWord = true;
                             return;
                         }
@@ -92,17 +107,20 @@ export function segmentSentence(inputText: string): string[] {
         remainder = remainder.substring(0, remainder.length-1)
         if(endsWithSentenceMark(remainder)) {
             sentences.push(text.trim());
+        } else {
+            discardedSentences.push(remainder)
         }
     } else {  // Sentence fragment won't be added to the list (ignored in subsequent process)
-        console.warn("Remaining sentence fragment was discarded:", remainder)
+        discardedSentences.push(remainder)
     }
 
-    // If no sentence was detected, the whole input will be considered to be one sentence (e.g. "Kapitel 1")
+    // If no sentence was detected or rejected, the whole input will be considered to be one sentence (e.g. "Kapitel 1")
     if(sentences.length === 0) {
         sentences.push(inputText)
+        discardedSentences = [] // In this case, we have no discarded sentences
     }
     
-    return sentences;
+    return {sentences, discardedSentences};
 }
 
 /**
@@ -123,7 +141,7 @@ export function getSentenceType(sentence: string): number {
         } else if(sentence.endsWith("?")) {
             sentenceType = SENTENCE_TYPE_QUESTION;
         } else if(sentence.endsWith("!")) {
-            sentenceType = SENTENCE_TYPE_EXCLAMATORY;
+            sentenceType = SENTENCE_TYPE_IMPERATIVE;
         } else {
             const lastCharacter = sentence.substring(sentence.length-1, sentence.length);
             if(isQuoteCharacter(lastCharacter)) {
@@ -133,7 +151,7 @@ export function getSentenceType(sentence: string): number {
                 } else if(previousCharacter === "?") {
                     sentenceType = SENTENCE_TYPE_QUOTE_QUESTION;
                 } else if(previousCharacter === "!") {
-                    sentenceType = SENTENCE_TYPE_QUOTE_EXCLAMATORY;
+                    sentenceType = SENTENCE_TYPE_QUOTE_IMPERATIVE;
                 }
             }
         }
@@ -156,4 +174,12 @@ function isSentenceMark(character: string): boolean {
 
 function isQuoteCharacter(character: string): boolean {
     return character === "\"" || character === "»" || character === "«" || character === "'"
+}
+
+function getExceptionList(language: string): string[] {
+    if(language === LANGUAGE_DE) {
+        return [...new Set([...generalExceptions, ...germanExceptions])];
+    } else {
+        return [...new Set([...generalExceptions, ...englishExceptions])];
+    }  
 }

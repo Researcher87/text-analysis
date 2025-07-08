@@ -61,6 +61,10 @@ function TechnicalInformationPage() {
         {
             key: applicationStrings.table_key_memory[language],
             value: memoryFormatted
+        },
+        {
+            key: applicationStrings.table_discarded_sentences[language],
+            value: nlpResult.metainfo.discardedSentences.length
         }
     ];
 

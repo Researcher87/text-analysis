@@ -67,6 +67,14 @@ export const applicationStrings: any = {
         "de": "Rechts",
         "en": "Rights"
     },
+    label_corpus_statistics_structure: {
+        "de": "Dokumentstruktur",
+        "en": "Document structure"
+    },
+    label_corpus_statistics_sentencetypes: {
+        "de": "Satztypen",
+        "en": "Sentence types"
+    },
     label_filter_contains: {
         "de": "Enthält",
         "en": "Contains"
@@ -219,6 +227,10 @@ export const applicationStrings: any = {
         "de": "Springe zu Satz...",
         "en": "Skip to sentence..."
     },
+    table_discarded_sentences: {
+        "de": "Anzahl verworfener (ignorierter) Sätze",
+        "en": "Number of discarded (ignored) sentences"
+    },
     table_key_first_appearance: {
         "de": "Erstvorkommen",
         "en": "1st appearance"
@@ -251,9 +263,33 @@ export const applicationStrings: any = {
         "de": "Sätze pro Absatz",
         "en": "Sentences per paragraph"
     },
+    table_key_corpusstat_sentence_declarative: {
+        "de": "Aussagesätze",
+        "en": "Declarative sentence"
+    },
+    table_key_corpusstat_sentence_question: {
+        "de": "Fragesätze (?)",
+        "en": "Interrogative sentence (?)"
+    },
+    table_key_corpusstat_sentence_imperative: {
+        "de": "Imperativsatz (!)",
+        "en": "Imperative sentence (!)"
+    },
+    table_key_corpusstat_sentence_unknown: {
+        "de": "Satzzyp unbekannt",
+        "en": "Unknown sentence type"
+    },
+    table_key_corpusstat_sentence_speech: {
+        "de": "Sätze mit wörtlicher Rede",
+        "en": "Sentences containing direct speech"
+    },
     table_key_unique_words: {
-        "de": "Verschiedene Wörter",
-        "en": "Unique words"
+        "de": "Verschiedene Wörter (Typen)",
+        "en": "Unique words (Types)"
+    },
+    table_key_unique_words_ratio: {
+        "de": "Verhältnis Typen zu Gesamtzahl",
+        "en": "Unique words to types ratio"
     },
     table_key_word: {
         "de": "Wort",

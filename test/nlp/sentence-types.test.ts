@@ -1,5 +1,5 @@
 import { getSentenceType } from "../../src/service/segmentation/sentence-segmentation";
-import { SENTENCE_TYPE_DECLARATIVE, SENTENCE_TYPE_EXCLAMATORY, SENTENCE_TYPE_QUESTION, SENTENCE_TYPE_QUOTE_DECLARATIVE, SENTENCE_TYPE_QUOTE_EXCLAMATORY, SENTENCE_TYPE_QUOTE_QUESTION } from "../../src/types/structure";
+import { SENTENCE_TYPE_DECLARATIVE, SENTENCE_TYPE_IMPERATIVE, SENTENCE_TYPE_QUESTION, SENTENCE_TYPE_QUOTE_DECLARATIVE, SENTENCE_TYPE_QUOTE_IMPERATIVE, SENTENCE_TYPE_QUOTE_QUESTION } from "../../src/types/structure";
 
 describe('Tests the determination of the correct sentence type.', () => {
     test('determination of declarative sentences', () => {
@@ -17,7 +17,7 @@ describe('Tests the determination of the correct sentence type.', () => {
     test('determination of exclamatory sentence', () => {
         const sentence = `Das ist ein Ausrufesatz!`
         const result = getSentenceType(sentence);
-        expect(result).toBe(SENTENCE_TYPE_EXCLAMATORY)
+        expect(result).toBe(SENTENCE_TYPE_IMPERATIVE)
     });
 
     test('determination of quotation sentence (declarative)', () => {
@@ -43,7 +43,7 @@ describe('Tests the determination of the correct sentence type.', () => {
     test('determination of quotation sentence (exclamatory)', () => {
         const sentence = `"Das ist schön!"`
         const result = getSentenceType(sentence);
-        expect(result).toBe(SENTENCE_TYPE_QUOTE_EXCLAMATORY)
+        expect(result).toBe(SENTENCE_TYPE_QUOTE_IMPERATIVE)
     });
 
 })
