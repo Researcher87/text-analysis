@@ -1,14 +1,13 @@
 import { useContext } from "react"
 import { LanguageContext } from "../../context/LanguageContext"
 import { ApplicationContext } from "../../context/ApplicationContext"
-import { applicationStrings } from "../../static/applicationStrings"
 
 import { Scatter } from "react-chartjs-2";
 import { getAllSentences } from "../../service/AnalyticsHelper";
 import { ALL_COLORS } from "../../constants/ChartConfig";
 import { ToastContainer, toast } from 'react-toastify';
 import React from "react";
-import { data } from "react-router";
+import { getText } from "../../service/Text";
 
 const MAX_ALLOWED_WORDS = 10
 
@@ -20,7 +19,7 @@ function WordOccurrencePage() {
     const customToastId = "my-toast-id"
 
     if(!nlpResult) {
-        return <div>{applicationStrings.message_no_result[language]}</div>
+        return <div>{getText("message_no_result", language)}</div>
     }
 
     const updateWordOccurrenceText = (text: string) => {
@@ -31,7 +30,7 @@ function WordOccurrencePage() {
 
     const words = chartOptionParameters.wordOccurrenceText.split(",").map(word => word.toLocaleLowerCase().trim())
     if(words.length > MAX_ALLOWED_WORDS && !toast.isActive(toastId ?? "")) {
-        toastId = toast(applicationStrings.toast_limit_exceeded_words[language], {
+        toastId = toast(getText("toast_limit_exceeded_words", language), {
             toastId: customToastId
           })
     }
@@ -89,7 +88,7 @@ function WordOccurrencePage() {
     const renderInputForm = () => {
         return <div className="d-flex flex-row justify-content-center">
             <div style={{marginRight: "1ch"}}>
-                <b>{applicationStrings.label_search_terms[language]}:</b>
+                <b>{getText("label_search_terms", language)}:</b>
             </div>
             <input className="border border-gray-300 rounded resize-none w-50 flex-row align-items-left"
                 value={chartOptionParameters.wordOccurrenceText}

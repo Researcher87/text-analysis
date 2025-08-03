@@ -3,12 +3,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import { ApplicationContext } from "../../context/ApplicationContext";
 import "./SentenceSegmentationPage.scss";
 import { ArrowLeft, ArrowRight, Bullseye, SkipEndFill, SkipStartFill } from 'react-bootstrap-icons';
-import { applicationStrings } from "../../static/applicationStrings";
 import { LanguageContext } from "../../context/LanguageContext";
 import { Form } from "react-bootstrap";
 import { getAllSentences, sortSentences } from "../../service/AnalyticsHelper";
 import InputModal from "../InputModal";
 import { filterSentences } from "../../service/SentenceFilter";
+import { getText } from "../../service/Text";
 
 export const SENTENCE_SORT_ID = 0
 export const SENTENCE_SORT_LEXICOGRAPHIC = 1
@@ -25,14 +25,14 @@ function SentenceSegmentationPage() {
   const [showPageModal, setShowPageModal] = useState(false)
 
   if (!nlpResult) {
-    return <div className="no-result">{applicationStrings.message_no_result[language]}</div>
+    return <div className="no-result">{getText("message_no_result", language)}</div>
   }
 
   const setSelectedPage = (page: string) => {
     const num = Number(page);
     const valid = Number.isInteger(num) && num >= 1 && num < sentences.length;
     if (!valid) {
-      toast(applicationStrings.toast_invalid_input[language])
+      toast(getText("toast_invalid_input", language))
     } else {
       updateSelectedIndex(num - 1)
       setShowPageModal(false)
@@ -98,7 +98,7 @@ function SentenceSegmentationPage() {
             id={"form-radio-filter-free"}
             className={"app-radiobutton"}
             type={"radio"}
-            label={applicationStrings.label_filter_free[language]}
+            label={getText("label_filter_free", language)}
             checked={sentenceSearchParameters.filterVariant === FILTER_VARIANT_FREE}
             onChange={() => changeFilterVariant(FILTER_VARIANT_FREE)}
           />
@@ -106,7 +106,7 @@ function SentenceSegmentationPage() {
             id={"form-radio-filter-words"}
             className={"app-radiobutton"}
             type={"radio"}
-            label={applicationStrings.label_filter_words[language]}
+            label={getText("label_filter_words", language)}
             checked={sentenceSearchParameters.filterVariant === FILTER_VARIANT_WORDS}
             onChange={() => changeFilterVariant(FILTER_VARIANT_WORDS)}
           />
@@ -116,7 +116,7 @@ function SentenceSegmentationPage() {
         id={"form-radio-case"}
         className={"app-radiobutton"}
         type={"checkbox"}
-        label={applicationStrings.label_case_sensitive[language]}
+        label={getText("label_case_sensitive", language)}
         checked={sentenceSearchParameters.filterCaseSensitive === true}
         onChange={() => changeCaseSensitiveOption()}
       />
@@ -128,13 +128,13 @@ function SentenceSegmentationPage() {
       <Form>
         <div key={"form-sentencesearch-filter"} className="d-flex flex-row">
           <div className="app-label">
-            {applicationStrings.label_sortoption[language]}:
+            {getText("label_sortoption", language)}:
           </div>
           <Form.Check
             id={"form-radio-en"}
             className={"app-radiobutton"}
             type={"radio"}
-            label={applicationStrings.label_sortoption_id[language]}
+            label={getText("label_sortoption_id", language)}
             checked={sentenceSearchParameters.sortOption === SENTENCE_SORT_ID}
             onChange={() => changeSortOption(SENTENCE_SORT_ID)}
           />
@@ -143,7 +143,7 @@ function SentenceSegmentationPage() {
             className={"app-radiobutton"}
             type={"radio"}
             checked={sentenceSearchParameters.sortOption === SENTENCE_SORT_LEXICOGRAPHIC}
-            label={applicationStrings.label_sortoption_lexicographic[language]}
+            label={getText("label_sortoption_lexicographic", language)}
             onChange={() => changeSortOption(SENTENCE_SORT_LEXICOGRAPHIC)}
           />
           <Form.Check
@@ -151,7 +151,7 @@ function SentenceSegmentationPage() {
             className={"app-radiobutton"}
             type={"radio"}
             checked={sentenceSearchParameters.sortOption === SENTENCE_SORT_LENGTH}
-            label={applicationStrings.label_sortoption_length[language]}
+            label={getText("label_sortoption_length", language)}
             onChange={() => changeSortOption(SENTENCE_SORT_LENGTH)}
           />
           <Form.Check
@@ -159,7 +159,7 @@ function SentenceSegmentationPage() {
             className={"app-radiobutton"}
             type={"radio"}
             checked={sentenceSearchParameters.sortOption === SENTENCE_SORT_RANDOM}
-            label={applicationStrings.label_sortoption_random[language]}
+            label={getText("label_sortoption_random", language)}
             onChange={() => changeSortOption(SENTENCE_SORT_RANDOM)}
           />
         </div>
@@ -176,15 +176,15 @@ function SentenceSegmentationPage() {
   };
 
   const currentSentenceObj = sentences[currentSentenceIndex];
-  let resultLabel = applicationStrings.label_sentencesearch_result[language];
+  let resultLabel = getText("label_sentencesearch_result", language);
   resultLabel = resultLabel.replaceAll("#1", `${currentSentenceIndex + 1}`)
   resultLabel = resultLabel.replaceAll("#2", `${sentences.length}`)
 
   let resultLabel2 = ""
   if (currentSentenceObj) {
     resultLabel2 = currentSentenceObj.words.length > 1
-      ? applicationStrings.label_sentence_length[language]
-      : applicationStrings.label_sentence_length_1w[language]
+      ? getText("label_sentence_length", language)
+      : getText("label_sentence_length_1w", language)
     resultLabel2 = resultLabel2.replaceAll("#1", String(currentSentenceObj.words.length))
     resultLabel2 = resultLabel2.replaceAll("#2", String(currentSentenceObj.sentence.length))
   }
@@ -239,13 +239,13 @@ function SentenceSegmentationPage() {
       <>{renderSentenceCard()}
         {renderInfoBar()}
         {showPageModal &&
-          <InputModal title={applicationStrings.modal_sentence_page[language]}
+          <InputModal title={getText("modal_sentence_page", language)}
             show={showPageModal}
             onCancel={() => setShowPageModal(false)}
             onConfirm={setSelectedPage} />
         }</>
       :
-      <div className="no-result">{applicationStrings.message_no_result[language]}</div>
+      <div className="no-result">{getText("message_no_result", language)}</div>
     }
   </div>
 

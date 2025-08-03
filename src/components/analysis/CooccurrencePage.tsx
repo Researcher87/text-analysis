@@ -1,12 +1,11 @@
 import { useContext } from "react"
 import { LanguageContext } from "../../context/LanguageContext"
 import { ApplicationContext } from "../../context/ApplicationContext"
-import { applicationStrings } from "../../static/applicationStrings"
 import { Form } from "react-bootstrap"
 import BootstrapTable from "react-bootstrap-table-next"
 import paginationFactory from "react-bootstrap-table2-paginator"
 import { getCooccurrences } from "../../service/AnalyticsHelper"
-import { tab } from "@testing-library/user-event/dist/tab"
+import { getText } from "../../service/Text"
 
 interface TableData {
     word: string
@@ -21,7 +20,7 @@ function CooccurrencePage() {
     const { nlpResult, cooccurrenceParameters, updateCooccurrenceParameters } = useContext(ApplicationContext)
 
     if(!nlpResult) {
-        return <div>{applicationStrings.message_no_result[language]}</div>
+        return <div>{getText("message_no_result", language)}</div>
     }
 
     const updateFilter = (filter: string) => {
@@ -48,11 +47,11 @@ function CooccurrencePage() {
     const columns = [
         {
             dataField: "word",
-            text: applicationStrings._word[language],
+            text: getText("_word", language),
             sort: true
         }, {
             dataField: "frequency",
-            text: applicationStrings._frequency[language],
+            text: getText("_frequency", language),
             sort: true
         }
     ];
@@ -69,7 +68,7 @@ function CooccurrencePage() {
                         id={"form-radio-en"}
                         className={"app-radiobutton"}
                         type={"radio"}
-                        label={applicationStrings.label_cooccurrences_left[language]}
+                        label={getText("label_cooccurrences_left", language)}
                         checked={cooccurrenceParameters.option === LEFT_COOCCURRENCE}
                         onChange={() => changeOption(LEFT_COOCCURRENCE)}
                     />
@@ -77,7 +76,7 @@ function CooccurrencePage() {
                         id={"form-radio-en"}
                         className={"app-radiobutton"}
                         type={"radio"}
-                        label={applicationStrings.label_cooccurrences_right[language]}
+                        label={getText("label_cooccurrences_right", language)}
                         checked={cooccurrenceParameters.option === RIGHT_COOCCURRENCE}
                         onChange={() => changeOption(RIGHT_COOCCURRENCE)}
                     />

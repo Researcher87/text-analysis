@@ -4,10 +4,10 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import { LanguageContext } from "../../context/LanguageContext"
 import { Word } from "../../types/structure";
 import { Form } from "react-bootstrap";
-import { applicationStrings } from "../../static/applicationStrings";
 import { ApplicationContext } from "../../context/ApplicationContext";
 import { getHelpText } from "../../service/Help";
 import { HelpModal } from "../HelpModal";
+import { getText } from "../../service/Text";
 
 const FILTER_VARIANT_STARTSWITH = 0
 const FILTER_VARIANT_CONTAINS = 1
@@ -32,7 +32,7 @@ function WordFrequencyTable() {
     const [showHelpModal, setShowHelpModal] = useState<boolean>(false)
 
     if (!nlpResult) {
-        return <div className="no-result">{applicationStrings.message_no_result[language]}</div>
+        return <div className="no-result">{getText("message_no_result", language)}</div>
     }
 
     const updateFilter = (filter: string) => {
@@ -103,25 +103,25 @@ function WordFrequencyTable() {
         },
     }, {
         dataField: "word",
-        text: applicationStrings.table_key_word[language],
+        text: getText("table_key_word", language),
         sort: true
     }, {
         dataField: "frequency",
-        text: applicationStrings.table_key_frequency[language],
+        text: getText("table_key_frequency", language),
         headerStyle: () => {
             return { width: "13ch" };
         },
         sort: true
     }, {
         dataField: "wordLength",
-        text: applicationStrings.table_key_length[language],
+        text: getText("table_key_length", language),
         headerStyle: () => {
             return { width: "10ch" };
         },
         sort: true
     }, {
         dataField: "firstAppearance",
-        text: applicationStrings.table_key_first_appearance[language],
+        text: getText("table_key_first_appearance", language),
         headerStyle: () => {
             return { width: "16ch" };
         },
@@ -147,7 +147,7 @@ function WordFrequencyTable() {
                         id={"form-radio-en"}
                         className={"app-radiobutton"}
                         type={"radio"}
-                        label={applicationStrings.label_filter_startswith[language]}
+                        label={getText("label_filter_startswith", language)}
                         checked={wordFrequencyParameters.filterVariant === FILTER_VARIANT_STARTSWITH}
                         onChange={() => changeFilterVariant(FILTER_VARIANT_STARTSWITH)}
                     />
@@ -155,7 +155,7 @@ function WordFrequencyTable() {
                         id={"form-radio-en"}
                         className={"app-radiobutton"}
                         type={"radio"}
-                        label={applicationStrings.label_filter_contains[language]}
+                        label={getText("label_filter_contains", language)}
                         checked={wordFrequencyParameters.filterVariant === FILTER_VARIANT_CONTAINS}
                         onChange={() => changeFilterVariant(FILTER_VARIANT_CONTAINS)}
                     />
@@ -163,7 +163,7 @@ function WordFrequencyTable() {
                         id={"form-radio-en"}
                         className={"app-radiobutton"}
                         type={"radio"}
-                        label={applicationStrings.label_filter_endsWith[language]}
+                        label={getText("label_filter_endsWith", language)}
                         checked={wordFrequencyParameters.filterVariant === FILTER_VARIANT_ENDSWITH}
                         onChange={() => changeFilterVariant(FILTER_VARIANT_ENDSWITH)}
                     />
@@ -171,7 +171,7 @@ function WordFrequencyTable() {
                         id={"form-radio-en"}
                         className={"app-radiobutton"}
                         type={"radio"}
-                        label={applicationStrings.label_filter_equals[language]}
+                        label={getText("label_filter_equals", language)}
                         checked={wordFrequencyParameters.filterVariant === FILTER_VARIANT_EQUALS}
                         onChange={() => changeFilterVariant(FILTER_VARIANT_EQUALS)}
                     />
@@ -179,7 +179,7 @@ function WordFrequencyTable() {
                         id={"form-radio-en"}
                         className={"app-radiobutton"}
                         type={"radio"}
-                        label={applicationStrings.label_filter_regex[language]}
+                        label={getText("label_filter_regex", language)}
                         checked={wordFrequencyParameters.filterVariant === FILTER_VARIANT_REGEX}
                         onChange={() => changeFilterVariant(FILTER_VARIANT_REGEX)}
                     />

@@ -1,12 +1,12 @@
 import { Bar } from "react-chartjs-2";
 
-import { applicationStrings } from "../../static/applicationStrings";
 import { useContext } from "react";
 import { LanguageContext } from "../../context/LanguageContext";
 import { ApplicationContext } from "../../context/ApplicationContext";
 import { CHART_COLOR_BLUE } from "../../constants/ChartConfig";
 import { getAllSentences } from "../../service/AnalyticsHelper";
 import { Form } from "react-bootstrap";
+import { getText } from "../../service/Text";
 
 export const SENTENCE_POSITION_ABSOLUTE = 0
 export const SENTENCE_POSITION_RELATIVE = 1
@@ -17,7 +17,7 @@ function SentencePositionChart() {
     const { nlpResult, chartOptionParameters, updateChartOptionParameters } = useContext(ApplicationContext)
 
     if (!nlpResult) {
-        return <div>{applicationStrings.message_no_result[language]}</div>
+        return <div>{getText("message_no_result", language)}</div>
     }
 
     const updateText = (text: string) => {
@@ -86,7 +86,7 @@ function SentencePositionChart() {
                 maintainAspectRatio: true,
                 callbacks: {
                     label: (tooltipItem: any) =>
-                        `${tooltipItem.formattedValue} ${applicationStrings._appearances[language]}`
+                        `${tooltipItem.formattedValue} ${getText("_appearances", language)}`
                 }
             }
         },
@@ -94,7 +94,7 @@ function SentencePositionChart() {
             y: {
                 title: {
                     display: true,
-                    text: `${applicationStrings.label_chart_word_count[language]}`
+                    text: `${getText("label_chart_word_count", language)}`
                 }
             }
         }
@@ -104,7 +104,7 @@ function SentencePositionChart() {
     const renderInputForm = () => {
         return <div className="d-flex flex-row justify-content-center">
             <div style={{ marginRight: "1ch" }}>
-                <b>{applicationStrings.label_search_term[language]}:</b>
+                <b>{getText("label_search_term", language)}:</b>
             </div>
             <input className="border border-gray-300 rounded resize-none w-25 flex-row align-items-left"
                 value={chartOptionParameters.sentencePositionText}
@@ -116,7 +116,7 @@ function SentencePositionChart() {
                         id={"form-radio-en"}
                         className={"app-radiobutton"}
                         type={"radio"}
-                        label={applicationStrings._absolute[language]}
+                        label={getText("_absolute", language)}
                         checked={chartOptionParameters.sentencePositionOption === SENTENCE_POSITION_ABSOLUTE}
                         onChange={() => changeOption(SENTENCE_POSITION_ABSOLUTE)}
                     />
@@ -124,7 +124,7 @@ function SentencePositionChart() {
                         id={"form-radio-en"}
                         className={"app-radiobutton"}
                         type={"radio"}
-                        label={applicationStrings._relative[language]}
+                        label={getText("_relative", language)}
                         checked={chartOptionParameters.sentencePositionOption === SENTENCE_POSITION_RELATIVE}
                         onChange={() => changeOption(SENTENCE_POSITION_RELATIVE)}
                     />

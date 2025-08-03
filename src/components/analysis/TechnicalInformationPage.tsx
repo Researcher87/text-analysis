@@ -1,15 +1,15 @@
 import { useContext } from "react"
 import { LanguageContext } from "../../context/LanguageContext"
 import BootstrapTable from "react-bootstrap-table-next"
-import { applicationStrings } from "../../static/applicationStrings";
 import { ApplicationContext } from "../../context/ApplicationContext";
+import { getText } from "../../service/Text";
 
 function TechnicalInformationPage() {
     const { language } = useContext(LanguageContext)
     const { nlpResult } = useContext(ApplicationContext)
 
     if (!nlpResult) {
-        return <div className="no-result">{applicationStrings.message_no_result[language]}</div>
+        return <div className="no-result">{getText("message_no_result", language)}</div>
     }
 
     function getObjectSize(obj: Object) {
@@ -55,15 +55,15 @@ function TechnicalInformationPage() {
 
     const data = [
         {
-            key: applicationStrings.table_key_processing_time[language],
+            key: getText("table_key_processing_time", language),
             value: `${nlpResult.metainfo.processingTime.toFixed(1)} ms`
         },
         {
-            key: applicationStrings.table_key_memory[language],
+            key: getText("table_key_memory", language),
             value: memoryFormatted
         },
         {
-            key: applicationStrings.table_discarded_sentences[language],
+            key: getText("table_discarded_sentences", language),
             value: nlpResult.metainfo.discardedSentences.length
         }
     ];

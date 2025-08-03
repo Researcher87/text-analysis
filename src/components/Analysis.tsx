@@ -1,5 +1,4 @@
 import { Button } from "react-bootstrap";
-import { applicationStrings } from "../static/applicationStrings";
 import CorpusStatistics from "./analysis/CorpusStatisticsPage";
 import { useContext, useState } from "react";
 import { LanguageContext } from "../context/LanguageContext";
@@ -13,6 +12,7 @@ import WordOccurrencePage from "./analysis/WordOccurrencePage";
 import SentencePositionChart from "./analysis/SentencePositionChart";
 import TechnicalInformationPage from "./analysis/TechnicalInformationPage";
 import SentenceSegmentationPage from "./analysis/SentenceSegmentationPage";
+import { getText } from "../service/Text";
 
 function Analysis() {
 
@@ -33,7 +33,7 @@ function Analysis() {
     const { nlpResult } = useContext(ApplicationContext)
 
     if(!nlpResult) {
-        return <div className="no-result">{applicationStrings.message_no_result[language]}</div>
+        return <div className="no-result">{getText("message_no_result", language)}</div>
     }
 
     const renderPage = () => {
@@ -69,61 +69,61 @@ function Analysis() {
                     active={activePage === PAGE_CORPUS_STATISTICS}
                     onClick={() => {setActivePage(PAGE_CORPUS_STATISTICS)}}
                     variant={'link'}>
-                {applicationStrings.menuitem_analysis_corpus_statistics[language]}
+                {getText("menuitem_analysis_corpus_statistics", language)}
             </Button>
             <Button className={"btn btn-link sidebar-button"}
                     active={activePage === PAGE_WORD_FREQUENCY}
                     onClick={() => {setActivePage(PAGE_WORD_FREQUENCY)}}
                     variant={'link'}>
-                {applicationStrings.menuitem_analysis_word_frequency[language]}
+                {getText("menuitem_analysis_word_frequency", language)}
             </Button>
             <Button className={"btn btn-link sidebar-button"}
                     active={activePage === PAGE_SENTENCE_SEGMENATION}
                     onClick={() => {setActivePage(PAGE_SENTENCE_SEGMENATION)}}
                     variant={'link'}>
-                {applicationStrings.menuitem_tools_sentences[language]}
+                {getText("menuitem_tools_sentences", language)}
             </Button>
             <Button className={"btn btn-link sidebar-button"}
                     active={activePage === PAGE_CHART_WORDOCCURRENCE}
                     onClick={() => {setActivePage(PAGE_CHART_WORDOCCURRENCE)}}
                     variant={'link'}>
-                {applicationStrings.menuitem_analysis_word_occurrence[language]}
+                {getText("menuitem_analysis_word_occurrence", language)}
             </Button>
             <Button className={"btn btn-link sidebar-button"}
                     active={activePage === PAGE_CHART_COOCCURRENCE}
                     onClick={() => {setActivePage(PAGE_CHART_COOCCURRENCE)}}
                     variant={'link'}>
-                {applicationStrings.menuitem_analysis_cooccurrences[language]}
+                {getText("menuitem_analysis_cooccurrences", language)}
             </Button>
             <Button className={"btn btn-link sidebar-button"}
                     active={activePage === PAGE_CHART_SENTENCE_LENGTH}
                     onClick={() => {setActivePage(PAGE_CHART_SENTENCE_LENGTH)}}
                     variant={'link'}>
-                {applicationStrings.menuitem_analysis_sentence_length[language]}
+                {getText("menuitem_analysis_sentence_length", language)}
             </Button>
             <Button className={"btn btn-link sidebar-button"}
                     active={activePage === PAGE_CHART_WORD_LENGTH}
                     onClick={() => {setActivePage(PAGE_CHART_WORD_LENGTH)}}
                     variant={'link'}>
-                {applicationStrings.menuitem_analysis_word_length[language]}
+                {getText("menuitem_analysis_word_length", language)}
             </Button>
             <Button className={"btn btn-link sidebar-button"}
                     active={activePage === PAGE_CHART_PARAGRAPH_LENGTH}
                     onClick={() => {setActivePage(PAGE_CHART_PARAGRAPH_LENGTH)}}
                     variant={'link'}>
-                {applicationStrings.menuitem_analysis_paragraph_length[language]}
+                {getText("menuitem_analysis_paragraph_length", language)}
             </Button>
             <Button className={"btn btn-link sidebar-button"}
                     active={activePage === PAGE_CHART_SENTENCE_POSITION}
                     onClick={() => {setActivePage(PAGE_CHART_SENTENCE_POSITION)}}
                     variant={'link'}>
-                {applicationStrings.menuitem_analysis_sentence_position[language]}
+                {getText("menuitem_analysis_sentence_position", language)}
             </Button>
             <Button className={"btn btn-link sidebar-button"}
                     active={activePage === PAGE_TECHNICAL}
                     onClick={() => {setActivePage(PAGE_TECHNICAL)}}
                     variant={'link'}>
-                {applicationStrings.menuitem_tools_technical[language]}
+                {getText("menuitem_tools_technical", language)}
             </Button>
         </div>
         <div className="w-100">

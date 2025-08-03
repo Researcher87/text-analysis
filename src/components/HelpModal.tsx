@@ -1,8 +1,8 @@
 import React, {CSSProperties, ReactElement, useContext} from "react";
 import {Modal} from "react-bootstrap";
 import { LanguageContext } from "../context/LanguageContext";
-import { applicationStrings } from "../static/applicationStrings";
 import { HelpText } from "../types/misc";
+import { getText } from "../service/Text";
 
 interface HelpModalProps {
     helpText: HelpText,
@@ -44,7 +44,7 @@ export function HelpModal(props: HelpModalProps): ReactElement {
                 <button type="button"
                         className="btn btn-primary"
                         onClick={props.closeHelpModal}>
-                    {applicationStrings._close[language]}
+                    {getText("_close", language)}
                 </button>
             </Modal.Footer>
         </Modal>

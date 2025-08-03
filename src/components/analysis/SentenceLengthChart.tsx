@@ -1,12 +1,12 @@
 import {Bar} from "react-chartjs-2";
 
 import { Chart, registerables} from 'chart.js';
-import { applicationStrings } from "../../static/applicationStrings";
 import { useContext } from "react";
 import { LanguageContext } from "../../context/LanguageContext";
 import { ApplicationContext } from "../../context/ApplicationContext";
 import { CHART_COLOR_BLUE } from "../../constants/ChartConfig";
 import { getAllSentences } from "../../service/AnalyticsHelper";
+import { getText } from "../../service/Text";
 
 Chart.register(...registerables);
 
@@ -16,7 +16,7 @@ function SentenceLengthChart() {
     const { nlpResult } = useContext(ApplicationContext)
 
     if(!nlpResult) {
-        return <div>{applicationStrings.message_no_result[language]}</div>
+        return <div>{getText("message_no_result", language)}</div>
     }
 
     const maxLength = 40
@@ -55,7 +55,7 @@ function SentenceLengthChart() {
                 maintainAspectRatio: true,
                 callbacks: {
                     label: (tooltipItem: any) => 
-                        `${tooltipItem.formattedValue} ${applicationStrings._appearances[language]}`
+                        `${tooltipItem.formattedValue} ${getText("_appearances", language)}`
                 }
             }
         },
@@ -63,7 +63,7 @@ function SentenceLengthChart() {
             y: {
                 title: {
                     display: true,
-                    text: `${applicationStrings.label_chart_word_count[language]}`
+                    text: `${getText("label_chart_word_count", language)}`
                 }
             }
         }

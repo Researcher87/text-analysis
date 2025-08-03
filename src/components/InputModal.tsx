@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import { applicationStrings } from "../static/applicationStrings";
 import { LanguageContext } from "../context/LanguageContext";
+import { getText } from "../service/Text";
 
 type Props = {
   show: boolean;
@@ -30,10 +30,10 @@ const InputModal: React.FC<Props> = ({ show, title, onConfirm, onCancel }) => {
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={onCancel}>
-          {applicationStrings._cancel[language]}
+          {getText("_cancel", language)}
         </Button>
         <Button variant="primary" onClick={() => onConfirm(inputValue)}>
-          {applicationStrings._apply[language]}
+          {getText("_apply", language)}
         </Button>
       </Modal.Footer>
     </Modal>

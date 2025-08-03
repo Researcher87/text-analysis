@@ -1,10 +1,10 @@
 import { useContext } from "react"
 import { ApplicationContext } from "../../context/ApplicationContext"
 import { LanguageContext } from "../../context/LanguageContext"
-import { applicationStrings } from "../../static/applicationStrings"
 import { getAllParagraphs } from "../../service/AnalyticsHelper"
 import { CHART_COLOR_BLUE } from "../../constants/ChartConfig"
 import { Bar } from "react-chartjs-2"
+import { getText } from "../../service/Text"
 
 function ParagraphLengthChart() {
 
@@ -12,7 +12,7 @@ function ParagraphLengthChart() {
     const { nlpResult } = useContext(ApplicationContext)
 
     if(!nlpResult) {
-        return <div>{applicationStrings.message_no_result[language]}</div>
+        return <div>{getText("message_no_result", language)}</div>
     }
 
     const maxLength = 150
@@ -56,7 +56,7 @@ function ParagraphLengthChart() {
                 maintainAspectRatio: true,
                 callbacks: {
                     label: (tooltipItem: any) => 
-                        `${tooltipItem.formattedValue} ${applicationStrings._appearances[language]}`
+                        `${tooltipItem.formattedValue} ${getText("_appearances", language)}`
                 }
             }
         },
@@ -64,7 +64,7 @@ function ParagraphLengthChart() {
             y: {
                 title: {
                     display: true,
-                    text: `${applicationStrings.label_chart_word_count[language]}`
+                    text: `${getText("label_chart_word_count", language)}`
                 }
             }
         }

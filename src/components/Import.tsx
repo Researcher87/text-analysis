@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { LanguageContext } from "../context/LanguageContext";
-import { applicationStrings } from "../static/applicationStrings";
 
 import sampleDe from "../static/sample_de.txt";
 import sampleEn from "../static/sample_en.txt";
@@ -9,6 +8,7 @@ import { analyseText } from "../service/LinguisticAnalysis";
 import { ApplicationContext, initialSentenceSearchParams, SentenceSearchProps } from "../context/ApplicationContext";
 import { tokenize } from "../service/segmentation/tokenization";
 import { ToastContainer, toast } from 'react-toastify';
+import { getText } from "../service/Text";
 
 const MAX_ALLOWED_WORDS = 1000000;
 const MAX_ALLOWED_CHARS = 10000000;
@@ -30,7 +30,7 @@ function Import() {
       updateInputText(text);
 
       if (words > MAX_ALLOWED_WORDS || characters > MAX_ALLOWED_CHARS) {
-        toast(applicationStrings.toast_limit_exceeded[language])
+        toast(getText("toast_limit_exceeded", language))
         return
       }
 
@@ -76,13 +76,13 @@ function Import() {
     setCharacters(text.length)
 
     if (wordCount > MAX_ALLOWED_WORDS || text.length > MAX_ALLOWED_CHARS) {
-      setStatusLabel(applicationStrings.label_text_too_large[language])
+      setStatusLabel(getText("label_text_too_large", language))
     } else {
       if(wordCount === 0) {
         setStatusLabel("")
       } else {
-        setStatusLabel(`${text.length} ${applicationStrings.label_chart_character_count[language]}, 
-          ${wordCount} ${applicationStrings.label_chart_word_count[language]}`)
+        setStatusLabel(`${text.length} ${getText("label_chart_character_count", language)}, 
+          ${wordCount} ${getText("label_chart_word_count", language)}`)
       }
     }
   }
@@ -98,7 +98,7 @@ function Import() {
           rows={12}
         />
         <div className="d-flex flex-column justify-content-end text-end mb-5">
-          {statusLabel !== "" ? statusLabel : applicationStrings.text_input[language]}
+          {statusLabel !== "" ? statusLabel : getText("text_input", language)}
         </div>
       </div>
       <div>
@@ -106,19 +106,19 @@ function Import() {
             style={{ width: "16ch", marginRight: "2ch" }}
             onClick={handleSampleButtonClick}
             disabled={!isEditable || text.trim() !== ""}>
-            {applicationStrings._sample[language]}
+            {getText("_sample", language)}
           </button>
           <button className="btn btn-primary"
             style={{ width: "16ch", marginRight: "2ch" }}
             onClick={handleApplyButtonClick}
             disabled={isEditable && text.trim() === ""}>
-            {isEditable ? applicationStrings._apply[language] : applicationStrings._edit[language]}
+            {isEditable ? getText("_apply", language) : getText("_edit", language)}
           </button>
           <button className="btn btn-danger"
             style={{ width: "16ch" }}
             onClick={handleDeleteButtonClick}
             disabled={!isEditable || text.trim() === ""}>
-            {applicationStrings._delete[language]}
+            {getText("_delete", language)}
           </button>
         </div>
     </div>

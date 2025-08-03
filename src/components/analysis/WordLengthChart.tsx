@@ -1,12 +1,12 @@
 import { Bar } from "react-chartjs-2";
 
-import { applicationStrings } from "../../static/applicationStrings";
 import { useContext } from "react";
 import { LanguageContext } from "../../context/LanguageContext";
 import { ApplicationContext } from "../../context/ApplicationContext";
 import { Form } from "react-bootstrap";
 import { CHART_COLOR_BLUE } from "../../constants/ChartConfig";
 import { getAllWords } from "../../service/AnalyticsHelper";
+import { getText } from "../../service/Text";
 
 export const CHART_WORDLENGTH_TYPES = 0
 export const CHART_WORDLENGTH_TOKENS = 1
@@ -17,7 +17,7 @@ function WordLengthChart() {
     const { nlpResult, chartOptionParameters, updateChartOptionParameters } = useContext(ApplicationContext)
 
     if (!nlpResult) {
-        return <div>{applicationStrings.message_no_result[language]}</div>
+        return <div>{getText("message_no_result", language)}</div>
     }
 
     const maxLength = 30
@@ -66,7 +66,7 @@ function WordLengthChart() {
                 maintainAspectRatio: true,
                 callbacks: {
                     label: (tooltipItem: any) => 
-                        `${tooltipItem.formattedValue} ${applicationStrings._appearances[language]}`
+                        `${tooltipItem.formattedValue} ${getText("_appearances", language)}`
                 }
             }
         },
@@ -74,7 +74,7 @@ function WordLengthChart() {
             y: {
                 title: {
                     display: true,
-                    text: `${applicationStrings.label_chart_character_count[language]}`
+                    text: `${getText("label_chart_character_count", language)}`
                 }
             }
         }
@@ -98,7 +98,7 @@ function WordLengthChart() {
                         id={"form-radio-wordlenght-chart-types"}
                         className={"app-radiobutton"}
                         type={"radio"}
-                        label={applicationStrings._types[language]}
+                        label={getText("_types", language)}
                         checked={chartOptionParameters.wordLengthSelection === CHART_WORDLENGTH_TYPES}
                         onChange={() => changeSetting(CHART_WORDLENGTH_TYPES)}
                     />
@@ -106,7 +106,7 @@ function WordLengthChart() {
                         id={"form-radio-wordlenght-chart-tokens"}
                         className={"app-radiobutton"}
                         type={"radio"}
-                        label={applicationStrings._tokens[language]}
+                        label={getText("_tokens", language)}
                         checked={chartOptionParameters.wordLengthSelection === CHART_WORDLENGTH_TOKENS}
                         onChange={() => changeSetting(CHART_WORDLENGTH_TOKENS)}
                     />
