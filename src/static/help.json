@@ -1,0 +1,20 @@
+{
+	"entries": [
+		{
+			"id": 1,
+			"remark": "Word frequency page",
+			"de": {
+				"title": "Worthäufigkeit",
+				"content": [
+					"Die Tabelle zeigt alle im Text enthaltenen Wörter an."
+				]
+			},
+			"en": {
+				"title": "Word Frequency",
+				"content": [
+					"The table displays all words that occur in the text."
+				]
+			}
+		}
+	]
+}

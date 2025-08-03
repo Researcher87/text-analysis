@@ -15,6 +15,10 @@ export const applicationStrings: any = {
         "de": "Abbrechen",
         "en": "Cancel"
     },
+    _close: {
+        "de": "Schließen",
+        "en": "Close"
+    },
     _delete: {
         "de": "Löschen",
         "en": "Delete"
@@ -67,13 +71,21 @@ export const applicationStrings: any = {
         "de": "Rechts",
         "en": "Rights"
     },
-    label_corpus_statistics_structure: {
-        "de": "Dokumentstruktur",
-        "en": "Document structure"
+    label_corpus_statistics_paragraphs: {
+        "de": "Absätze",
+        "en": "Paragraphs"
+    },
+    label_corpus_statistics_sentences: {
+        "de": "Sätze",
+        "en": "Sentences"
     },
     label_corpus_statistics_sentencetypes: {
         "de": "Satztypen",
         "en": "Sentence types"
+    },
+    label_corpus_statistics_structure: {
+        "de": "Dokumentstruktur",
+        "en": "Document structure"
     },
     label_filter_contains: {
         "de": "Enthält",
@@ -102,6 +114,10 @@ export const applicationStrings: any = {
     label_filter_words: {
         "de": "Wörter",
         "en": "Words"
+    },
+    label_key: {
+        "de": "Eigenschaft",
+        "en": "Key"
     },
     label_language: {
         "de": "Sprache",
@@ -162,6 +178,10 @@ export const applicationStrings: any = {
     label_text_too_large: {
         "de": "Text zu groß!",
         "en": "Text exceeds limit!"
+    },
+    label_value: {
+        "de": "Wert",
+        "en": "Value"
     },
     menu_analysis: {
         "de": "Analyse",
@@ -231,6 +251,54 @@ export const applicationStrings: any = {
         "de": "Anzahl verworfener (ignorierter) Sätze",
         "en": "Number of discarded (ignored) sentences"
     },
+    table_key_average_word_length: {
+        "de": "Mittlere Wortlänge",
+        "en": "Average word length"
+    },
+    table_key_corpusstat_paragraph_average: {
+        "de": "Mittlere Absatzlänge",
+        "en": "Average paragraph length"
+    },
+    table_key_corpusstat_paragraph_longest: {
+        "de": "Längster Absatz",
+        "en": "Longest paragraph"
+    },
+    table_key_corpusstat_paragraph_shortest: {
+        "de": "Kürzester Absatz",
+        "en": "Shortest paragraph"
+    },
+    table_key_corpusstat_sentence_average: {
+        "de": "Mittlere Satzlänge",
+        "en": "Average sentence length"
+    },
+    table_key_corpusstat_sentence_declarative: {
+        "de": "Aussagesätze",
+        "en": "Declarative sentence"
+    },
+    table_key_corpusstat_sentence_imperative: {
+        "de": "Imperativsatz (!)",
+        "en": "Imperative sentence (!)"
+    },
+    table_key_corpusstat_sentence_longest: {
+        "de": "Längster Satz",
+        "en": "Longest Sentence"
+    },
+    table_key_corpusstat_sentence_question: {
+        "de": "Fragesätze (?)",
+        "en": "Interrogative sentence (?)"
+    },
+    table_key_corpusstat_sentence_shortest: {
+        "de": "Kürzester Satz",
+        "en": "Shortest Sentence"
+    },
+    table_key_corpusstat_sentence_unknown: {
+        "de": "Satzzyp unbekannt",
+        "en": "Unknown sentence type"
+    },
+    table_key_corpusstat_sentence_speech: {
+        "de": "Sätze mit wörtlicher Rede",
+        "en": "Sentences containing direct speech"
+    },
     table_key_first_appearance: {
         "de": "Erstvorkommen",
         "en": "1st appearance"
@@ -263,26 +331,6 @@ export const applicationStrings: any = {
         "de": "Sätze pro Absatz",
         "en": "Sentences per paragraph"
     },
-    table_key_corpusstat_sentence_declarative: {
-        "de": "Aussagesätze",
-        "en": "Declarative sentence"
-    },
-    table_key_corpusstat_sentence_question: {
-        "de": "Fragesätze (?)",
-        "en": "Interrogative sentence (?)"
-    },
-    table_key_corpusstat_sentence_imperative: {
-        "de": "Imperativsatz (!)",
-        "en": "Imperative sentence (!)"
-    },
-    table_key_corpusstat_sentence_unknown: {
-        "de": "Satzzyp unbekannt",
-        "en": "Unknown sentence type"
-    },
-    table_key_corpusstat_sentence_speech: {
-        "de": "Sätze mit wörtlicher Rede",
-        "en": "Sentences containing direct speech"
-    },
     table_key_unique_words: {
         "de": "Verschiedene Wörter (Typen)",
         "en": "Unique words (Types)"
@@ -306,6 +354,10 @@ export const applicationStrings: any = {
     table_key_words_per_sentence: {
         "de": "Wörter pro Satz",
         "en": "Words per sentence"
+    },
+    text_input: {
+        "de": "Gib einen beliebigen Text oder wähle den Beispieltext.",
+        "en": "Enter any text or click sample text."
     },
     toast_invalid_input: {
         "de": "Ungültige Eingabe!",

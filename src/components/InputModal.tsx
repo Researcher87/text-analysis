@@ -20,15 +20,13 @@ const InputModal: React.FC<Props> = ({ show, title, onConfirm, onCancel }) => {
         <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form>
-          <Form.Group>
-            <Form.Control
-              type="text"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-            />
-          </Form.Group>
-        </Form>
+        <Form.Group>
+          <Form.Control
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+          />
+        </Form.Group>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={onCancel}>

@@ -247,7 +247,6 @@ function SentenceSegmentationPage() {
       :
       <div className="no-result">{applicationStrings.message_no_result[language]}</div>
     }
-
   </div>
 
 }

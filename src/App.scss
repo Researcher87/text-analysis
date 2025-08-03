@@ -41,6 +41,17 @@ $sidebar-font-color-selected: yellow;
   font-size: 1.5rem;
 }
 
+.helpbutton {
+  position: absolute;
+  top: 1.5vh;
+  right: 1.5vw;
+}
+
+.import {
+  min-width: 50ch;
+  width: 50vw;
+}
+
 .no-result {
   margin: 5vh;
 }

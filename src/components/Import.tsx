@@ -29,7 +29,7 @@ function Import() {
     if (isEditable) {
       updateInputText(text);
 
-      if(words > MAX_ALLOWED_WORDS || characters > MAX_ALLOWED_CHARS) {
+      if (words > MAX_ALLOWED_WORDS || characters > MAX_ALLOWED_CHARS) {
         toast(applicationStrings.toast_limit_exceeded[language])
         return
       }
@@ -47,6 +47,7 @@ function Import() {
 
   const handleDeleteButtonClick = () => {
     setText("")
+    updateStatistics("")
   }
 
   const handleSampleButtonClick = () => {
@@ -74,47 +75,52 @@ function Import() {
     setWords(wordCount)
     setCharacters(text.length)
 
-    if(wordCount > MAX_ALLOWED_WORDS || text.length > MAX_ALLOWED_CHARS) {
+    if (wordCount > MAX_ALLOWED_WORDS || text.length > MAX_ALLOWED_CHARS) {
       setStatusLabel(applicationStrings.label_text_too_large[language])
     } else {
-      setStatusLabel(`${text.length} Zeichen, ${wordCount} Wörter`)
+      if(wordCount === 0) {
+        setStatusLabel("")
+      } else {
+        setStatusLabel(`${text.length} ${applicationStrings.label_chart_character_count[language]}, 
+          ${wordCount} ${applicationStrings.label_chart_word_count[language]}`)
+      }
     }
   }
 
   return (
     <div className="d-flex flex-column align-items-center mt-5">
       <ToastContainer />
-      <div className="w-50">
-      <textarea className="w-100 border border-gray-300 rounded resize-none mb-1"
-        value={text}
-        onChange={updateText}
-        disabled={!isEditable}
-        rows={12}
-      />
-      <div className="d-flex flex-column justify-content-end text-end mb-5">
-        {statusLabel}
+      <div className="import">
+        <textarea className="w-100 border border-gray-300 rounded resize-none mb-1"
+          value={text}
+          onChange={updateText}
+          disabled={!isEditable}
+          rows={12}
+        />
+        <div className="d-flex flex-column justify-content-end text-end mb-5">
+          {statusLabel !== "" ? statusLabel : applicationStrings.text_input[language]}
+        </div>
       </div>
       <div>
-        <button className="btn btn-secondary"
-          style={{ width: "16ch", marginRight: "2ch" }}
-          onClick={handleSampleButtonClick}
-          disabled={!isEditable || text.trim() !== ""}>
-          {applicationStrings._sample[language]}
-        </button>
-        <button className="btn btn-primary"
-          style={{ width: "16ch", marginRight: "2ch" }}
-          onClick={handleApplyButtonClick}
-          disabled={isEditable && text.trim() === ""}>
-          {isEditable ? applicationStrings._apply[language] : applicationStrings._edit[language]}
-        </button>
-        <button className="btn btn-danger"
-          style={{ width: "16ch" }}
-          onClick={handleDeleteButtonClick}
-          disabled={!isEditable || text.trim() === ""}>
-          {applicationStrings._delete[language]}
-        </button>
-      </div>
-      </div>
+          <button className="btn btn-secondary"
+            style={{ width: "16ch", marginRight: "2ch" }}
+            onClick={handleSampleButtonClick}
+            disabled={!isEditable || text.trim() !== ""}>
+            {applicationStrings._sample[language]}
+          </button>
+          <button className="btn btn-primary"
+            style={{ width: "16ch", marginRight: "2ch" }}
+            onClick={handleApplyButtonClick}
+            disabled={isEditable && text.trim() === ""}>
+            {isEditable ? applicationStrings._apply[language] : applicationStrings._edit[language]}
+          </button>
+          <button className="btn btn-danger"
+            style={{ width: "16ch" }}
+            onClick={handleDeleteButtonClick}
+            disabled={!isEditable || text.trim() === ""}>
+            {applicationStrings._delete[language]}
+          </button>
+        </div>
     </div>
   );
 

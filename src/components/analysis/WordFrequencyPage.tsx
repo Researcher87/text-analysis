@@ -1,11 +1,13 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import BootstrapTable from "react-bootstrap-table-next"
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { LanguageContext } from "../../context/LanguageContext"
-import { Result, Word } from "../../types/structure";
+import { Word } from "../../types/structure";
 import { Form } from "react-bootstrap";
 import { applicationStrings } from "../../static/applicationStrings";
 import { ApplicationContext } from "../../context/ApplicationContext";
+import { getHelpText } from "../../service/Help";
+import { HelpModal } from "../HelpModal";
 
 const FILTER_VARIANT_STARTSWITH = 0
 const FILTER_VARIANT_CONTAINS = 1
@@ -27,12 +29,14 @@ function WordFrequencyTable() {
     const { wordFrequencyParameters, updateWordFrequencyParameters } = useContext(ApplicationContext)
     const { nlpResult } = useContext(ApplicationContext)
 
+    const [showHelpModal, setShowHelpModal] = useState<boolean>(false)
+
     if (!nlpResult) {
         return <div className="no-result">{applicationStrings.message_no_result[language]}</div>
     }
 
     const updateFilter = (filter: string) => {
-        const newParams = { ...wordFrequencyParameters, filter }
+        const newParams = { ...wordFrequencyParameters, filter: filter.toLocaleLowerCase() }
         updateWordFrequencyParameters(newParams)
     }
 
@@ -48,7 +52,7 @@ function WordFrequencyTable() {
     function isValidRegex(pattern: string) {
         try {
             new RegExp(pattern);
-            return true; 
+            return true;
         } catch (e) {
             return false; // Invalid Regex
         }
@@ -69,7 +73,7 @@ function WordFrequencyTable() {
                 case FILTER_VARIANT_EQUALS:
                     return word.word === filter
                 case FILTER_VARIANT_REGEX:
-                    if(!isValidRegex(filter)) {
+                    if (!isValidRegex(filter)) {
                         return false;
                     }
                     return word.word.match(filter)
@@ -125,6 +129,12 @@ function WordFrequencyTable() {
     },
     ];
 
+    const helpText = getHelpText(1, language)
+
+    const openHelpModal = () => {
+        setShowHelpModal(true)
+    }
+
     const renderFilterForm = () => {
         return <div className="d-flex flex-row align-items-left mb-3 mt-3">
             <input className="border border-gray-300 rounded resize-none w-25 flex-row align-items-left"
@@ -178,17 +188,28 @@ function WordFrequencyTable() {
         </div>
     }
 
-    return <div className="d-flex flex-column sentence-page justify-content-center" style={{ width: "80%" }}>
-        <div className="d-flex flex-column justify-content-start filter-card">
-            {renderFilterForm()}
+    return <div>
+        {showHelpModal && helpText &&
+            <HelpModal helpText={helpText}
+                size={"lg"}
+                closeHelpModal={() => setShowHelpModal(false)}
+            />
+        }
+        <div style={{ position: "relative" }}>
+            <button className="btn btn-secondary helpbutton" onClick={() => openHelpModal()}>?</button>
         </div>
-        <BootstrapTable bootstrap4
-            keyField='id'
-            data={tableData}
-            columns={columns}
-            pagination={paginationFactory({sizePerPage: 10, sizePerPageList: [5, 10, 15] })}
-            pagination-align="top"
-        />
+        <div className="d-flex flex-column sentence-page justify-content-center" style={{ width: "80%" }}>
+            <div className="d-flex flex-column justify-content-start filter-card">
+                {renderFilterForm()}
+            </div>
+            <BootstrapTable bootstrap4
+                keyField='id'
+                data={tableData}
+                columns={columns}
+                pagination={paginationFactory({ sizePerPage: 10, sizePerPageList: [5, 10, 15] })}
+                pagination-align="top"
+            />
+        </div>
     </div>
 
 }
