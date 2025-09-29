@@ -6,13 +6,19 @@
 			"de": {
 				"title": "Worthäufigkeit",
 				"content": [
-					"Die Tabelle zeigt alle im Text enthaltenen Wörter an."
+					"Die Tabelle zeigt alle im Text enthaltenen Wörter an, zusammen mit der Häufigkeit (Anzahl an Vorkommen), der Wortlänge und dem Erstvorkommen. Das Erstvorkommen bezeichnet die Nummer des ersten Satzes im Text, an dem das Wort auftritt.",
+					"Mit dem Filter können gezielt Wörter im Wortschatz gesucht werden. Es gibt verschiedene Einstellungsmöglichkeiten zur Filterung, z. B. ob ein Wort mit einem bestimmten Ausdruck beginnen oder enden soll. Auch reguläre Ausdrücke (Regex) werden unterstützt.",
+					"Die einzelnen Spalten können sortiert werden, um bspw. die längsten oder kürzesten Wörter anzuzeigen oder die Tabelle klassischerweise nach den häufigsten Wörtern zu ordnen.",
+					"<b>Hinweis:</b> Die Tabelle unterscheidet nicht zwischen Groß- und Kleinschreibung."
 				]
 			},
 			"en": {
 				"title": "Word Frequency",
 				"content": [
-					"The table displays all words that occur in the text."
+					"The table displays all words that occur in the text, together with the frequency (number of occurrences), word length and first appearance. The first appearance refers to the first sentence in the text that contains the word.",
+					"You can use the filter to search for specific words within the corpus. There are different settings for filter, e. g. searching words that starts or ends with a specific expression. Regular expressions (Regex) are also provided.",
+					"Each column is sortable. For instance, the table can be sorted to display the shortest or longest words in the text or to sort the data traditionally by the most frequenly occurring words.",
+					"<b>Note:</b> The word frequency does not regard the word's case."
 				]
 			}
 		}

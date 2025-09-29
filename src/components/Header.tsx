@@ -78,7 +78,7 @@ function Header() {
                             active={activePath === PATH_ANALYSIS}
                             value={PATH_ANALYSIS}
                             variant={'link'}>
-                            {getText("menu_analysiss", language)}
+                            {getText("menu_analysis", language)}
                     </Button>
                 </Link>
                 <Link to={PATH_TOOLS}>
